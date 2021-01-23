@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" data-themeable>
+
+<head>
+    <title>Alessio&#x27;s Projects</title>
+    <!-- Meta. -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="/">
+
+    <!-- Favicon. -->
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.png">
+
+    <!-- Styling for common components. -->
+    <link rel="stylesheet" href="/style/common.css">
+    <!-- Conditional CSS. -->
+    <link rel="stylesheet" href="/style/markdown.css">
+
+    <!-- Common scripts. -->
+    <script src="/scripts/common.js" async></script>
+    <!-- Conditional scripts. -->
+</head>
+
+<body>
+    <div id="top-mask" data-themeable></div>
+    <header>
+        <div id="navbar" data-themeable>
+            <h1 class="blogName"><a id="blog-name" href="/index.html">Alessio Palladino</a></h1>
+            <!-- Rounded switch -->
+            <div id="dark-mode-switch-wrapper" class="not-selectable">
+                <label class="switch" for="switch-theme-btn">
+                    Toggle color theme.
+                    <input id="switch-theme-btn" type="checkbox">
+                    <span class="slider round">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" class="moon"><path d="M0 0h24v24H0z" fill="none"/><path fill="white" d="M9 2c-1.05 0-2.05.16-3 .46 4.06 1.27 7 5.06 7 9.54 0 4.48-2.94 8.27-7 9.54.95.3 1.95.46 3 .46 5.52 0 10-4.48 10-10S14.52 2 9 2z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" class="sun"><path d="M0 0h24v24H0z" fill="none"/><path d="M20 15.31L23.31 12 20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/></svg>
+                    </span>
+                </label>
+            </div>
+        </div>
+            <div id="drawer-menu" data-themeable>
+                <div class="link-wrapper" data-themeable><a href="/index.html">Blog</a></div>
+                <div class="link-wrapper" data-themeable><a href="/projects.html">Projects</a></div>
+                <div class="link-wrapper" data-themeable><a href="/about.html">About</a></div>
+                <div id="drawer-menu-handle" data-themeable>
+                    <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24" viewBox="0 0 24 24" width="24"><g><rect fill="none" height="24" width="24"/></g><g><g><g><path d="M20,9H4v2h16V9z M4,15h16v-2H4V15z"/></g></g></g></svg>
+                </div>
+            </div>
+    </header>    <div id="mask"></div>
+    <div id="content" data-themeable>
+<h1 class="post-body-header">
+              <a name="projects" href="#projects">Projects</a>
+            </h1><p>Here you’ll find some random projects I’ve worked on, listed chronologically.</p>
+<p>I actually think I lost some of the code for these projects, especially the first ones, because I wasn’t even using Git at the time. I was just uploading stuff to Google Drive, SAD!</p>
+<p>With many of my first projects I bit off much more than I could chew. In some cases I worked on a project although I lacked a lot of basic CS knowledge. However, none of that was important because <strong>the reason I embarked on these projects was for the learning experience</strong>. Which is why I rarely thought about best practices while developing some of these projects. Whether it be: writing readable code, using comments, structuring my commits to represent unitary changes, <strong>writing tests</strong>, linting code… Though my biggest mistake with these projects is that I <em>never</em> dedicated any reasonable 
+amount of time to <strong>design</strong>.</p>
+<h1 class="post-body-header">
+              <a name="my-first-game" href="#my-first-game">My first game</a>
+            </h1><div class="video-wrapper"><video width="320" height="240" controls playsinline muted poster="/images/snake.png">
+    <source src="/videos/snakegame.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+</div><p>My first project is my favorite one. Thinking about it brings back such great memories: I had just finished my first introductory computer science class, software development seemed so big/mysterious/exciting. I couldn’t wait to see what I could make! So that winter break after the semester had ended I asked myself, “can I make a video game?”.<br>Good times ensued:</p>
+<ul>
+<li>I discovered and learned how to use the Unity game engine.</li>
+<li>I dipped my toes in C#.</li>
+<li>I learned some basic game development concepts (such as the <a href="https://www.gamedesigning.org/learn/game-loop/#:~:text=The%20game%20loop%20refers%20to,in%20specific%20frames%20per%20second." title="" class="md-link" data-themeable>game loop</a>).</li>
+<li>I also learned some software design patterns, namely the <a href="https://en.wikipedia.org/wiki/Singleton_pattern#:~:text=In%20software%20engineering%2C%20the%20singleton,mathematical%20concept%20of%20a%20singleton." title="" class="md-link" data-themeable>Singleton</a> pattern (usually implemented by some god-like <code class="inline-code" data-themeable>GameManager</code> class).</li>
+</ul>
+<p>With these first projects it really felt like you could take over the world with code. Again, I was ignoring so many fundamental steps such as design and testing, but that’s what made it more fun at the time.</p>
+<h1 class="post-body-header">
+              <a name="why-not-another-game" href="#why-not-another-game">Why not another game</a>
+            </h1><p>I had so much fun with my first game that I decided to try another, this time geared towards mobile.</p>
+<div class="video-wrapper"><video width="320" height="240" controls playsinline muted poster="/images/mobile-game.png">
+    <source src="/videos/pixeltrigger.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+</div><p>In the game, you:</p>
+<ul>
+<li>Shoot at enemies (anything that isn’t green) by tapping on them.</li>
+<li>Walk to different points on the screen by tapping on the screen (this only works if the location you tapped on isn’t occupied by an enemy, otherwise you’d shoot at the enemy).</li>
+<li>Teleport by double tapping somewhere on the screen.</li>
+</ul>
+<p>The name for the game was Pixel Trigger, which I thought was pretty darn cool (maybe not that cool). It was super fun to play, especially to have friends and family try it out. </p>
+<p>Sadly letting other people try out the game exposed some pretty terrible bugs (what a surprise). I remember not implementing things very cleverly, but anyway, I was still a total noob at coding and I was happy to just have something I could play. Plus even if there were bugs people that tried it out still had a good time.</p>
+<p>Looking back at this it still looks fun, I might go back and re-implement it, I’m 100% sure I’d do a much better job now.</p>
+<h1 class="post-body-header">
+              <a name="a-text-editor" href="#a-text-editor">A text editor</a>
+            </h1><div class="video-wrapper"><video width="320" height="240" controls playsinline muted poster="/images/text-editor.png">
+    <source src="/videos/texteditor.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+</div><p>This is one of those projects where I really bit off more than I could chew. I hadn’t even taken my “data structures &amp; algorithms” class but for some reason I thought I’d be capable of implementing a basic text editor.</p>
+<p>In reality I got somewhat close:</p>
+<ul>
+<li>You could create a file, open an existing one, and save any changes.</li>
+<li>The lines were numbered (I know, incredible).</li>
+<li>You had a freaking awesome little Minimap on the right of the screen (I wanted it to look like Sublime).</li>
+<li>The line your caret was currently on was highlighted (notice that it’s also highlighted in the Minimap!).</li>
+<li>The scrolling for the editor and the Minimap (the part that shows you what section of the file you are currently viewing) was nicely synced.</li>
+<li>Syntax highlighting! Though it was buggy and only worked for Java and even writing about how I implemented it makes me cringe (calling <code class="inline-code" data-themeable>find()</code> in a certain area of the text given a list of keywords).</li>
+</ul>
+<p>This project really just makes me laugh, I had fun making it and made plenty of mistakes, though I learned some cool things along the way:</p>
+<ul>
+<li>I discovered/used threads before even knowing what they were.</li>
+<li>Did some object orientated programming, delegating responsibilities to specific classes.</li>
+<li>The Swing library.</li>
+<li>Thought about efficiency for the first time ever (this happened because I tried to open a large file and the syntax highlighting system I had written was not happy to find tens of thousands of lines to immediately begin parsing).</li>
+</ul>
+<p>Though I abandoned the project it still served me well and was a fun experience. FYI I named the text editor <strong>Splendiferous</strong> so as to rival Sublime in a funny and totally not serious way.</p>
+<h1 class="post-body-header">
+              <a name="a-web-app-for-dieting" href="#a-web-app-for-dieting">A web app for dieting</a>
+            </h1><p>I had just finished taking an upper level web development course. I thought the topics were interesting so I decided to dive deeper into web development by just making something. With this project I dove headfirst into the React and Django frameworks.</p>
+<p>I decided to try and make an app to help people track their macronutrients (proteins, carbohydrates, fat) along with their calories and body weight.</p>
+<p>You could do two main things with the app:</p>
+<ol>
+<li><p>Create recipes for meals you want to track the nutrients of:</p>
+<div class="video-wrapper"><video width="320" height="240" controls playsinline muted poster="/images/add-recipe.png">
+ <source src="/videos/addrecipe.mp4" type="video/mp4">
+ Your browser does not support the video tag.
+</video>
+</div></li>
+<li><p>View the summary of your total macros and calories in a dashboard:</p>
+<div class="video-wrapper"><video width="320" height="240" controls playsinline muted poster="/images/view-stats.png">
+ <source src="/videos/dietdash.mp4" type="video/mp4">
+ Your browser does not support the video tag.
+</video>
+
+</div></li>
+</ol>
+<p>Like some of my other early projects this one was abandoned once I got the learning experience I wanted out of it.</p>
+<p>My next projects tended to be smaller and therefore more realistic in scope.</p>
+<h1 class="post-body-header">
+              <a name="a-guitar-music-theory-web-app" href="#a-guitar-music-theory-web-app">A guitar/music theory web app</a>
+            </h1><p>I embarked on this little project because I wanted to make something without using any frameworks.</p>
+<p>The web app displays the fretboard of a guitar. It is meant as a tool to help guitarists memorize the location of the notes on the fretboard and the shape of different scale patterns.</p>
+<div class="video-wrapper"><video width="320" height="240" controls playsinline muted poster="/images/music-theory.png">
+    <source src="/videos/guitarwebapp.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+</div><p>Link to <a href="https://github.com/alpalla/old_projects/tree/master/guitar_web_app" title="" class="md-link" data-themeable>source code</a>.</p>
+<h1 class="post-body-header">
+              <a name="vscode-contributions" href="#vscode-contributions">vscode contributions</a>
+            </h1><p>I contributed to vscode a couple of times:</p>
+<ul>
+<li><a href="https://github.com/microsoft/vscode/pull/89872" title="" class="md-link" data-themeable>Allow N instances of the same task</a>.</li>
+<li><a href="https://github.com/microsoft/vscode/pull/72015" title="" class="md-link" data-themeable>Terminate all tasks</a>.</li>
+</ul>
+<p>These were great experiences. The only reason I don’t contribute more often is because sometimes you’ll follow good etiquette and say that you’re working on an issue but then someone else just opens a PR which depending on how long you were working on a fix, throws a lot of your time away.</p>
+<h1 class="post-body-header">
+              <a name="a-little-game-in-react" href="#a-little-game-in-react">A little game in React</a>
+            </h1><p>It had been a while since I had worked with React and I wanted to brush up on it. So I started by doing the official React tic-tac-toe tutorial, here’s a screenshot of my final result:
+</p><div class="img-container"><img src="/images/tic-tac-toe.png" width="758" height="537" alt="React tic-tac-toe"></div><p></p>
+<ul>
+<li><a href="https://github.com/alpalla/react-tictactoe" title="" class="md-link" data-themeable>link to code</a></li>
+<li><a href="https://alpalla.github.io/react-tictactoe/" title="" class="md-link" data-themeable>link to game</a></li>
+</ul>
+<p>I then made a little pattern-matching game of my own in React: 
+</p><div class="img-container"><img src="/images/patterns.png" width="345" height="480" alt="Pattern matching game"></div><p></p>
+<ul>
+<li><a href="https://github.com/alpalla/patterns" title="" class="md-link" data-themeable>link to code</a></li>
+<li><a href="https://alpalla.github.io/patterns/" title="" class="md-link" data-themeable>link to game</a>.</li>
+</ul>
+<h1 class="post-body-header">
+              <a name="this-website-" href="#this-website-">This website!</a>
+            </h1><p>How could I not mention this site, I wrote a static site generator to make it and it was really fun!</p>
+
+<!--  --><footer id="footer">
+    <small>© 2020 Alessio Palladino</small>
+</footer>    </div>
+    <script>"use strict";!function(){var c=null;function t(){localStorage.getItem("theme")||(window.matchMedia("(prefers-color-scheme: dark)").matches?r("dark"):window.matchMedia("(prefers-color-scheme: light)").matches&&r("light"))}function n(){var e=document.getElementById("navbar");return e&&null!==(e=e.dataset.theme)&&void 0!==e?e:null}function a(){var e=localStorage.getItem("theme");e&&e!==n()&&r(e)}function r(e){if(c){for(var t=0;t<c.length;t++){var n=c[t];(n instanceof HTMLElement||n instanceof SVGElement)&&(n.dataset.theme=e)}var a,r=document.getElementById("theme-link");"light"===e?r&&r.setAttribute("href","/style/github.css"):r&&r.setAttribute("href","/style/tomorrow-night-bright.css"),a=e,(r=document.getElementById("switch-theme-btn"))&&r instanceof HTMLInputElement&&(r.checked="dark"===a)}}!function(){c=document.querySelectorAll(" [data-themeable] "),t(),a(),function(){try{window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",function(e){t()})}catch(e){try{window.matchMedia("(prefers-color-scheme: dark)").addListener(function(e){t()})}catch(e){console.error(e)}}}();var e=document.getElementById("switch-theme-btn");null!=e&&e.addEventListener("click",function(){var e,t=null;localStorage.getItem("theme")&&"dark"===localStorage.getItem("theme")?t="light":localStorage.getItem("theme")&&"light"===localStorage.getItem("theme")?t="dark":localStorage.getItem("theme")||(t=(e=n())&&"dark"==e?"light":"dark"),t=null!=t?t:"light",localStorage.setItem("theme",t),a()})}(),setInterval(function(){a()},2e3)}()</script>
+
+</body>
+
+</html>

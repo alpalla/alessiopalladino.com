@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en" data-themeable>
+
+<head>
+    <title>Discovering Application Containerization</title>
+    <!-- Meta. -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Astounded" by my first experience with docker, i wanted to know more. so in this post i explore virtualization, virtual machines, and containers, in order to better understand and contextualize docker.>
+
+    <!-- Favicon. -->
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.png">
+
+    <!-- Styling for common components. -->
+    <link rel="stylesheet" href="/style/common.css">
+    <!-- Conditional CSS. -->
+    <link rel="stylesheet" href="/style/post.css">
+    <link rel="stylesheet" href="/style/github.css" id="theme-link">
+
+    <!-- Common scripts. -->
+    <script src="/scripts/common.js" async></script>
+    <!-- Conditional scripts. -->
+</head>
+
+<body>
+    <div id="top-mask" data-themeable></div>
+    <header>
+        <div id="navbar" data-themeable>
+            <h1 class="blogName"><a id="blog-name" href="/index.html">Alessio Palladino</a></h1>
+            <!-- Rounded switch -->
+            <div id="dark-mode-switch-wrapper" class="not-selectable">
+                <label class="switch" for="switch-theme-btn">
+                    Toggle color theme.
+                    <input id="switch-theme-btn" type="checkbox">
+                    <span class="slider round">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" class="moon"><path d="M0 0h24v24H0z" fill="none"/><path fill="white" d="M9 2c-1.05 0-2.05.16-3 .46 4.06 1.27 7 5.06 7 9.54 0 4.48-2.94 8.27-7 9.54.95.3 1.95.46 3 .46 5.52 0 10-4.48 10-10S14.52 2 9 2z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" class="sun"><path d="M0 0h24v24H0z" fill="none"/><path d="M20 15.31L23.31 12 20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/></svg>
+                    </span>
+                </label>
+            </div>
+        </div>
+            <div id="drawer-menu" data-themeable>
+                <div class="link-wrapper" data-themeable><a href="/index.html">Blog</a></div>
+                <div class="link-wrapper" data-themeable><a href="/projects.html">Projects</a></div>
+                <div class="link-wrapper" data-themeable><a href="/about.html">About</a></div>
+                <div id="drawer-menu-handle" data-themeable>
+                    <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24" viewBox="0 0 24 24" width="24"><g><rect fill="none" height="24" width="24"/></g><g><g><g><path d="M20,9H4v2h16V9z M4,15h16v-2H4V15z"/></g></g></g></svg>
+                </div>
+            </div>
+    </header>    <div id="mask"></div>
+    <div id="content" data-themeable>
+<div class="post-content">
+    <h1 class="post-title"><a href="/application-containerization/index.html">Discovering Application Containerization</a></h1>
+    <small class="post-info">
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" data-themeable><path d="M0 0h24v24H0z" fill="none"/><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+            Published Thu Sep 24 2020
+        </div>
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" class="schedule" data-themeable><path d="M0 0h24v24H0z" fill="none"/><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/><path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+            15 min read
+        </div>
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" class="tag-icon" data-themeable><path d="M0 0h24v24H0z" fill="none"/><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/></svg>
+            <a class="post-tag" href="/tags/Containers/index.html" title="See all posts with this tag." data-themeable>Containers</a>
+        </div>
+    </small>
+    
+        <div class="toc-wrapper">
+            <div class="toc" data-themeable>
+            <h1 class="contents-title">Contents</h1>
+                <a href="#virtualization">
+<h1 class="toc-entry" style="text-indent:0" data-themeable>
+<span class="toc-numb">1 </span>Virtualization</h1></a>
+                <a href="#virtualization-a-general-definition">
+<h2 class="toc-entry" style="text-indent:10px" data-themeable>
+<span class="toc-numb">1.1 </span>Virtualization: A General Definition</h2></a>
+                <a href="#kernel-space-vs-user-space">
+<h2 class="toc-entry" style="text-indent:10px" data-themeable>
+<span class="toc-numb">1.2 </span>Kernel Space vs User Space</h2></a>
+                <a href="#three-kinds-of-virtualization">
+<h2 class="toc-entry" style="text-indent:10px" data-themeable>
+<span class="toc-numb">1.3 </span>Three Kinds of Virtualization</h2></a>
+                <a href="#virtual-machines-and-the-hypervisor">
+<h1 class="toc-entry" style="text-indent:0" data-themeable>
+<span class="toc-numb">2 </span>Virtual Machines and the Hypervisor</h1></a>
+                <a href="#the-resource-optimization-hole-that-containers-fill">
+<h2 class="toc-entry" style="text-indent:10px" data-themeable>
+<span class="toc-numb">2.1 </span>The Resource Optimization Hole that Containers Fill</h2></a>
+                <a href="#application-containerization">
+<h1 class="toc-entry" style="text-indent:0" data-themeable>
+<span class="toc-numb">3 </span>Application Containerization</h1></a>
+                <a href="#multiple-user-spaces-that-share-a-kernel">
+<h2 class="toc-entry" style="text-indent:10px" data-themeable>
+<span class="toc-numb">3.1 </span>Multiple User Spaces that Share a Kernel</h2></a>
+                <a href="#container-runtime">
+<h2 class="toc-entry" style="text-indent:10px" data-themeable>
+<span class="toc-numb">3.2 </span>Container Runtime</h2></a>
+                <a href="#underlying-technology-of-containers">
+<h2 class="toc-entry" style="text-indent:10px" data-themeable>
+<span class="toc-numb">3.3 </span>Underlying Technology of Containers</h2></a>
+                <a href="#docker">
+<h1 class="toc-entry" style="text-indent:0" data-themeable>
+<span class="toc-numb">4 </span>Docker</h1></a>
+                <a href="#docker-images">
+<h2 class="toc-entry" style="text-indent:10px" data-themeable>
+<span class="toc-numb">4.1 </span>Docker Images</h2></a>
+                <a href="#what-is-a-docker-image-">
+<h3 class="toc-entry" style="text-indent:20px" data-themeable>
+<span class="toc-numb">4.1.1 </span>What is a Docker Image?</h3></a>
+                <a href="#layers">
+<h3 class="toc-entry" style="text-indent:20px" data-themeable>
+<span class="toc-numb">4.1.2 </span>Layers</h3></a>
+                <a href="#the-role-of-aufs-and-overlayfs">
+<h3 class="toc-entry" style="text-indent:20px" data-themeable>
+<span class="toc-numb">4.1.3 </span>The role of AUFS and OverlayFS</h3></a>
+                <a href="#what-s-the-point-of-layers-">
+<h3 class="toc-entry" style="text-indent:20px" data-themeable>
+<span class="toc-numb">4.1.4 </span>What’s the Point of Layers?</h3></a>
+                <a href="#back-to-colossal-cave-adventure">
+<h2 class="toc-entry" style="text-indent:10px" data-themeable>
+<span class="toc-numb">4.2 </span>Back to Colossal Cave Adventure</h2></a>
+                <a href="#references">
+<h1 class="toc-entry" style="text-indent:0" data-themeable>
+<span class="toc-numb">5 </span>References</h1></a>
+            </div>
+        </div>
+    <p>I was watching <a href="https://en.wikipedia.org/wiki/High_Score_(TV_series)" title="" class="md-link" data-themeable>High Score</a> on Netflix, a documentary on video games, when I found out about <a href="https://en.wikipedia.org/wiki/Colossal_Cave_Adventure" title="" class="md-link" data-themeable>Colossal Cave Adventure</a>. I had never played a text-based adventure game before and I really wanted to try it out, so you can imagine how happy I was when I found out that a version of the game was <a href="https://opensource.com/article/17/6/revisit-colossal-cave-adventure-open-adventure" title="" class="md-link" data-themeable>open source</a>. I cloned the <a href="https://gitlab.com/esr/open-adventure" title="" class="md-link" data-themeable>repository</a> and started installing the dependencies in order to build and play the game. However, I quickly ran into trouble with certain libraries… </p>
+<p>I just wanted to try out the game, not worry about setting up my environment in order to build it first. But then! I made a fantastic discovery…</p>
+<p>With one magical command I could magically skip all of this dependency nonsense and just be able to play the game right away:</p>
+<div class="code-block-wrapper" data-themeable><div><pre class="code-block"><code class="language-shell">docker run --rm -it quay.io/rhdp/open-adventure ./advent</code></pre></div></div>
+<p>The above command obviously only works if you already have Docker <a href="https://docs.docker.com/get-docker/" title="" class="md-link" data-themeable>installed</a>). I’ll get into the different parts of this command later in this post.</p>
+<p>The thing is, after witnessing this sorcery I then asked myself, what really is this Docker magic? And how did we get to this point in time where I could wield such unimaginable power? In the rest of this post you’ll find out what I discovered on my quest to unravel the witchcraft lurking behind my terminal’s command line.</p>
+<h1 class="post-body-header">
+              <a name="virtualization" href="#virtualization">Virtualization</a>
+            </h1><h2 class="post-body-header">
+              <a name="virtualization-a-general-definition" href="#virtualization-a-general-definition">Virtualization: A General Definition</a>
+            </h2><p>Our story starts with <a href="https://en.wikipedia.org/wiki/Virtualization" title="" class="md-link" data-themeable>virtualization</a>, as it will be a fundamental concept in the following discussion. Virtualization is a general term and there are different kinds of virtualization. In the context of this article we can say that:</p>
+<blockquote>
+<p>“Virtualization involves replicating an operating system on a physical machine in order to create a virtual environment in which an application may run.”</p>
+</blockquote>
+<p>From the point of view of the hosted application, the virtual environment should be indistinguishable from a regular operating system environment on a regular computer.</p>
+<h2 class="post-body-header">
+              <a name="kernel-space-vs-user-space" href="#kernel-space-vs-user-space">Kernel Space vs User Space</a>
+            </h2><p>Before looking at the different types of virtualization, we need to be clear on what the <a href="https://en.wikipedia.org/wiki/Kernel_(operating_system)" title="" class="md-link" data-themeable>kernel</a> of an operating system is:</p>
+<blockquote>
+<p>“Fundamentally the kernel is a software program in an operating system, it is always running and is responsible for all core interactions between hardware and software.”</p>
+</blockquote>
+<p>The kernel is so important that it runs in a part of memory called <strong>kernel space</strong>, which is completely isolated from the part of memory where the applications meant for the user are located (<a href="https://en.wikipedia.org/wiki/User_space" title="" class="md-link" data-themeable>user space</a>). In terms of Colossal Cave Adventure, the game resides in user space but when the game needs user input from the keyboard it will have to interact with the kernel via a <a href="https://en.wikipedia.org/wiki/System_call" title="" class="md-link" data-themeable>system call</a>.</p>
+<h2 class="post-body-header">
+              <a name="three-kinds-of-virtualization" href="#three-kinds-of-virtualization">Three Kinds of Virtualization</a>
+            </h2><p>Virtualization was first developed in the 1960s by researchers at IBM. Today there are three main types of virtualization <a class="raw-html-link" data-themeable id="ref-1" href="#cite-1"><sup>[1]</sup></a>:</p>
+<ul>
+<li><strong>Full-virtualization</strong>: virtualizes an entire operating system kernel.</li>
+<li><strong>Para-virtualization</strong>: virtualizes a kernel that has been optimized for performance.</li>
+<li><strong>Operating-system-level virtualization</strong>: does not virtualize a kernel.</li>
+</ul>
+<p>As you may have noticed, what happens to the kernel defines the <em>type</em> of virtualization.</p>
+<p>Virtualization didn’t just appear out of nowhere, creating a virtual environment as opposed to hosting an application directly on a physical machine provides many advantages. In fact, virtualization is at the core of modern cloud infrastructure. </p>
+<p><em>Para-virtualization</em> is a technique used by virtual machines (application virtualization). You’ve probably already heard of some para-virtualization technologies like <a href="https://www.virtualbox.org/" title="" class="md-link" data-themeable>VirtualBox</a> or <a href="https://www.vmware.com/" title="" class="md-link" data-themeable>VMware</a>. On the other hand, <em>operating-system-level virtualization</em> is a technique used by containers (application containerization). These are the two most common techniques used to host applications in the cloud. </p>
+<p>So now we’ve got a grasp on what virtualization is, and we know which two techniques are most popular in today’s cloud infrastructure. Next, in order to contextualize my bewilderment with Docker and understand containers better, it’ll help to look at how things were done in the pre-Docker era with virtual machines (para-virtualization).</p>
+<h1 class="post-body-header">
+              <a name="virtual-machines-and-the-hypervisor" href="#virtual-machines-and-the-hypervisor">Virtual Machines and the Hypervisor</a>
+            </h1><p>A virtual machine (VM) is an abstraction of hardware <a class="raw-html-link" data-themeable id="ref-2" href="#cite-2"><sup>[2]</sup></a>, each virtual machine simulates a physical machine capable of running applications.</p>
+<p>Before containers, deploying applications on virtual machines was THE way to go. To deploy an application you have an image of a VM (basically a snapshot/copy of a fully configured operating system) ready to go (so as not to have to setup your VM with a script first), you spin up the VM, and BAM you’ve got an environment ready to host your application.</p>
+<p>Virtual machines rely on a program known as a <strong>hypervisor</strong> which creates and runs virtual machines. A hypervisor sits between the host OS (the OS running on the physical machine) and the guest OS (the OS running in the VM):</p>
+<p></p><div class="img-container"><img src="/images/vm-diagram.png" width="457" height="321" alt="Virtual Machine Diagram"></div><p></p>
+<h2 class="post-body-header">
+              <a name="the-resource-optimization-hole-that-containers-fill" href="#the-resource-optimization-hole-that-containers-fill">The Resource Optimization Hole that Containers Fill</a>
+            </h2><p>Each virtual machine in the above diagram replicates the kernel of an operating system. Do I really need an entire virtual machine just to run Colossal Cave Adventure?</p>
+<p>As you can imagine, the overhead of creating a virtual machine just to host an application is pretty expensive, which is bad in terms of scalability. In fact, para-virtualization doesn’t work well with microservices-based architectures. Are you really going to spin up an entire virtual machine just to run a lightweight modular part of your application? With para-virtualization applications tend to be monolithic, it’s with the rise of application containerization that the potential of microservices was able to be more efficiently exploited.</p>
+<p>We’ve now got the background to understand where containers come into play.</p>
+<h1 class="post-body-header">
+              <a name="application-containerization" href="#application-containerization">Application Containerization</a>
+            </h1><!-- On MacOS the Docker Machine is a virtual machine? Explain... -->
+<p>According to <a href="https://www.docker.com/resources/what-container" title="" class="md-link" data-themeable>Docker</a>‘s website:</p>
+<blockquote>
+<p>“A container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another.”</p>
+</blockquote>
+<h2 class="post-body-header">
+              <a name="multiple-user-spaces-that-share-a-kernel" href="#multiple-user-spaces-that-share-a-kernel">Multiple User Spaces that Share a Kernel</a>
+            </h2><p>A container is an <a href="https://en.wikipedia.org/wiki/OS-level_virtualization" title="" class="md-link" data-themeable>OS-level virtualization</a>. As previously mentioned, this type of virtualization does not virtualize a kernel or emulate hardware in any way. The key difference between OS-level virtualization and the other kinds of virtualization is that although containers are isolated environments, <strong>containers share the kernel</strong> of the host OS. Since they share the kernel, containers have operating systems that do not have their own kernel.</p>
+<p>The fact that the OS in a container does not need a kernel allows for extremely lightweight containers. In fact, a container can consist of a single root directory containing a single executable file, because <a href="https://iximiuz.com/en/posts/not-every-container-has-an-operating-system-inside/#container-is-just-a-processes" title="" class="md-link" data-themeable>not every container has an operating system inside</a>. </p>
+<p>Basically with virtual machines when we want to deploy an application we’ve got these big VM images but one day someone was like “wait… what if we separate the kernel from the OS?!?”. In this way, containers end up being operating systems with just a user space. So OS-level virtualization essentially allows you to run multiple user spaces that share the kernel of a host on a single machine.</p>
+<h2 class="post-body-header">
+              <a name="container-runtime" href="#container-runtime">Container Runtime</a>
+            </h2><p>Just like virtual machines are managed by a hypervisor, containers are managed by a <strong>Container Runtime</strong>, which is a program that sits between the host operating system (OS) and the running containers:</p>
+<p></p><div class="img-container"><img src="/images/container-diagram.png" width="481" height="301" alt="Container Diagram"></div><p></p>
+<p>In my case Colossal Cave Adventure is one of those apps enclosed in a container. As you can see, the game is already included with all the dependencies it needs to run. But in technical terms, what makes up a container? How are they possible?</p>
+<h2 class="post-body-header">
+              <a name="underlying-technology-of-containers" href="#underlying-technology-of-containers">Underlying Technology of Containers</a>
+            </h2><p>While Docker was first released to the public in 2013, the underlying technology was around years earlier. The <a href="https://en.wikipedia.org/wiki/LXC" title="" class="md-link" data-themeable>LXC</a> (an operating-system-level virtualization method) was initially released in 2008 and allowed running multiple isolated containers on a host using a single Linux kernel.</p>
+<p>LXC built on top of two key Linux kernel features <a class="raw-html-link" data-themeable id="ref-3" href="#cite-3"><sup>[3]</sup></a>:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Cgroups" title="" class="md-link" data-themeable>cgroups</a>: a kernel feature that manages the resource usage of processes.</li>
+<li><a href="https://en.wikipedia.org/wiki/Linux_namespaces" title="" class="md-link" data-themeable>Namespaces</a>: a kernel feature that partitions resources so as to be able to assign a certain set of resources to a certain set of processes, such that one set of processes sees one set of resources while another set of processes sees a different set of resources.</li>
+</ul>
+<p>With a general understanding of containers, we can now move on to talk about Docker specifically.</p>
+<h1 class="post-body-header">
+              <a name="docker" href="#docker">Docker</a>
+            </h1><p>As previously mentioned, the technology behind containers isn’t new. In fact Docker started out by using LXC. Docker built on top of LXC, added more functionality, and eventually dropped LXC, but more importantly Docker was capable of championing this technology and creating a new era of development moving away from the monolith and focusing on microservices known as <a href="https://en.wikipedia.org/wiki/Cloud_native_computing" title="" class="md-link" data-themeable>cloud-native development</a>.</p>
+<p>Docker is more than a container runtime, it provides additional tooling and a unified API that makes it easy to work with containers. We’ll see some of the useful things Docker can do for us next.</p>
+<h2 class="post-body-header">
+              <a name="docker-images" href="#docker-images">Docker Images</a>
+            </h2><h3 class="post-body-header">
+              <a name="what-is-a-docker-image-" href="#what-is-a-docker-image-">What is a Docker Image?</a>
+            </h3><p>As mentioned before, a key aspect of container isolation is that each container has its own stripped down operating system. This is provided to Docker containers via a Docker image, which is an immutable read-only file <a class="raw-html-link" data-themeable id="ref-4" href="#cite-4"><sup>[4]</sup></a> which includes everything to run an application <a class="raw-html-link" data-themeable id="ref-5" href="#cite-5"><sup>[5]</sup></a>.</p>
+<p>An image is constructed from a base image, which is a snapshot of a certain operating system (minus the kernel).</p>
+<p>Container images can be stored in an image registry, which is a place where you can store and retrieve images just like you do with source code and GitHub. You can for example create a container based off of Ubuntu (and open a bash shell once the container starts up) by running:</p>
+<div class="code-block-wrapper" data-themeable><div><pre class="code-block"><code class="language-shell">docker run -it ubuntu bash</code></pre></div></div>
+<p>Note that this will work even if you don’t have the ubuntu image downloaded, Docker will download it for you if it doesn’t find it on your computer.</p>
+<p>While an image is a snapshot of an application and its environment, a container is a running instance of such a snapshot. By “running” the big difference I mean is that the container can be changed (you can perform operations in it like adding or removing files/directories).</p>
+<h3 class="post-body-header">
+              <a name="layers" href="#layers">Layers</a>
+            </h3><p>Images are made up of <strong>layers</strong>, where each layer corresponds to a change made to a certain base image via a set of possible docker commands.</p>
+<p>For example you can modify an image and commit the change (with <a href="https://docs.docker.com/engine/reference/commandline/commit/" title="" class="md-link" data-themeable>docker commit</a>), similarly to how source code is version-controlled with Git (you can even include a commit message and author name). Each “commit” is a change in the filesystem and corresponds to an image layer. <em>Only the differences between filesystem snapshots are saved</em>, just like only the difference between source code versions are saved in a regular commit. A stack of layers is basically a stack of changes to an initial filesystem.</p>
+<p>Each of these layers cannot be changed, so how is it possible that if you run a container you actually <em>can</em> make changes in the container?</p>
+<p>Note that the changes you make to a container are always thrown away whenever you restart the container. The reason why it’s possible to make changes to the filesystem in a running container is that when you run an image, Docker adds a write layer on top of all the read-only image layers of the Docker image.</p>
+<p>So a Docker image is made up of layers, where each layer represents a change to the filesystem relative to the previous layer, starting from a base image. When you run a container you don’t have any clue that layers exist, so how are these layers combined to produce a final filesystem for your running container?</p>
+<h3 class="post-body-header">
+              <a name="the-role-of-aufs-and-overlayfs" href="#the-role-of-aufs-and-overlayfs">The role of AUFS and OverlayFS</a>
+            </h3><p>Docker has historically used AUFS (Advanced Multi-Layered Unification Filesytem) as a union filesystem, which basically allows the overlaying of multiple filesystems. OverlayFS is a recent alternative to AUFS. </p>
+<p>These tools make image layers possible and most importantly produce the final filesystem for a container using the aforementioned layers.</p>
+<h3 class="post-body-header">
+              <a name="what-s-the-point-of-layers-" href="#what-s-the-point-of-layers-">What’s the Point of Layers?</a>
+            </h3><p>Other than conveniently providing a way to track changes made to an image, this layering system allows you to run multiple containers based off of the same base image. Docker reuses the layers containers have in common so that it doesn’t need to recreate the base image for each running container.</p>
+<p>Basically if you have an existing container <code class="inline-code" data-themeable>X</code> that uses image <code class="inline-code" data-themeable>A</code> which occupies 50mb of memory, and you want to create another container <code class="inline-code" data-themeable>Y</code>. You can reuse image <code class="inline-code" data-themeable>A</code> to run container <code class="inline-code" data-themeable>Y</code> instead of downloading some other image, saving memory. When you run both container <code class="inline-code" data-themeable>X</code> and <code class="inline-code" data-themeable>Y</code>, both containers will have their own filesystem based off of all the image layers they have in common (obviously their final topmost write layers are not the same) <a class="raw-html-link" data-themeable id="ref-6" href="#cite-6"><sup>[6]</sup></a>.</p>
+<p>Layers are also cached, all of this allows Docker to spin up containers in seconds (versus minutes for virtual machine).</p>
+<p>One final note: while using images is clearly convenient, in reality <a href="https://iximiuz.com/en/posts/you-dont-need-an-image-to-run-a-container/" title="" class="md-link" data-themeable>you don’t need an image to run a container</a>.</p>
+<h2 class="post-body-header">
+              <a name="back-to-colossal-cave-adventure" href="#back-to-colossal-cave-adventure">Back to Colossal Cave Adventure</a>
+            </h2><p>We can finally get back to Colossal Cave Adventure and wrap everything up. </p>
+<p>The docker command at the beginning of this article is the quickest way to start playing the game:</p>
+<div class="code-block-wrapper" data-themeable><div><pre class="code-block"><code class="language-shell">docker run --rm -it quay.io/rhdp/open-adventure ./advent</code></pre></div></div>
+<p>What it does is:</p>
+<ul>
+<li><code class="inline-code" data-themeable>docker run</code> starts a container</li>
+<li>The <code class="inline-code" data-themeable>--rm</code> flag removes the container once it is stopped.</li>
+<li>The <code class="inline-code" data-themeable>-it</code> flag allows us to open an interactive shell in the container.</li>
+<li><code class="inline-code" data-themeable>quay.io/rhdp/open-adventure</code> is the image with which to create the container.</li>
+<li><code class="inline-code" data-themeable>./advent</code> is the command we want to execute in the container once it starts up.</li>
+</ul>
+<p>Let’s break down some of these steps using some intermediate commands.</p>
+<p>I can pull the relevant image from the <a href="https://quay.io/" title="" class="md-link" data-themeable>Quay</a> image registry with <code class="inline-code" data-themeable>docker pull</code>:</p>
+<div class="code-block-wrapper" data-themeable><div><pre class="code-block"><code class="language-shell">docker pull quay.io/rhdp/open-adventure</code></pre></div></div>
+<p>I can check that I have the image downloaded:</p>
+<div class="code-block-wrapper" data-themeable><div><pre class="code-block"><code class="language-shell">docker images</code></pre></div></div>
+<div class="code-block-wrapper" data-themeable><div><pre class="code-block"><code class="language-shell">REPOSITORY                     TAG                 IMAGE ID            CREATED             SIZE
+quay.io/rhdp/open-adventure    latest              f9bd4da91330        2 years ago         1.13GB</code></pre></div></div>
+<p>I can create a container (named <code class="inline-code" data-themeable>open-adventure</code>) using the pulled image:</p>
+<div class="code-block-wrapper" data-themeable><div><pre class="code-block"><code class="language-shell">docker create --name open-adventure quay.io/rhdp/open-adventure</code></pre></div></div>
+<div class="code-block-wrapper" data-themeable><div><pre class="code-block"><code class="language-text">081eccd52f1569b0d7b0634b3bce5bc0264c57e417cee8f382ddb04e13d118b9</code></pre></div></div>
+<p>We can see that the container has been created with status <code class="inline-code" data-themeable>Created</code>:</p>
+<div class="code-block-wrapper" data-themeable><div><pre class="code-block"><code class="language-shell">docker ps -a</code></pre></div></div>
+<div class="code-block-wrapper" data-themeable><div><pre class="code-block"><code class="language-text">CONTAINER ID        IMAGE                         COMMAND                  CREATED             STATUS              PORTS               NAMES
+032b27f4f03b        quay.io/rhdp/open-adventure   &quot;/home/user/entrypoi…&quot;   12 seconds ago      Created                                 open-adventure</code></pre></div></div>
+<p>Now let’s start the container:</p>
+<div class="code-block-wrapper" data-themeable><div><pre class="code-block"><code class="language-shell">docker start open-adventure</code></pre></div></div>
+<div class="code-block-wrapper" data-themeable><div><pre class="code-block"><code class="language-text">open-adventure</code></pre></div></div>
+<p>We can see that the status has gone from <code class="inline-code" data-themeable>Created</code> to <code class="inline-code" data-themeable>Up</code>:</p>
+<div class="code-block-wrapper" data-themeable><div><pre class="code-block"><code class="language-shell">docker ps</code></pre></div></div>
+<div class="code-block-wrapper" data-themeable><div><pre class="code-block"><code class="language-text">CONTAINER ID        IMAGE                         COMMAND                  CREATED             STATUS              PORTS               NAMES
+081eccd52f15        quay.io/rhdp/open-adventure   &quot;/home/user/entrypoi…&quot;   22 seconds ago      Up 7 seconds        22/tcp, 4403/tcp    open-adventure</code></pre></div></div>
+<p>I can open an interactive bash shell in the container like so:</p>
+<div class="code-block-wrapper" data-themeable><div><pre class="code-block"><code class="language-shell">docker exec -it open-adventure /bin/bash</code></pre></div></div>
+<p>I can confirm that the container is running a certain linux distribution:</p>
+<div class="code-block-wrapper" data-themeable><div><pre class="code-block"><code class="language-shell">cat /etc/*release*</code></pre></div></div>
+<div class="code-block-wrapper" data-themeable><div><pre class="code-block"><code class="language-text">CentOS Linux release 7.5.1804 (Core) 
+NAME=&quot;CentOS Linux&quot;
+VERSION=&quot;7 (Core)&quot;
+ID=&quot;centos&quot;
+ID_LIKE=&quot;rhel fedora&quot;
+VERSION_ID=&quot;7&quot;
+PRETTY_NAME=&quot;CentOS Linux 7 (Core)&quot;
+ANSI_COLOR=&quot;0;31&quot;
+CPE_NAME=&quot;cpe:/o:centos:centos:7&quot;
+HOME_URL=&quot;https://www.centos.org/&quot;
+BUG_REPORT_URL=&quot;https://bugs.centos.org/&quot;
+
+CENTOS_MANTISBT_PROJECT=&quot;CentOS-7&quot;
+CENTOS_MANTISBT_PROJECT_VERSION=&quot;7&quot;
+REDHAT_SUPPORT_PRODUCT=&quot;centos&quot;
+REDHAT_SUPPORT_PRODUCT_VERSION=&quot;7&quot;
+
+CentOS Linux release 7.5.1804 (Core) 
+CentOS Linux release 7.5.1804 (Core) </code></pre></div></div>
+<p>In this case the container is based off of the <a href="https://www.centos.org/" title="" class="md-link" data-themeable>CentOS</a> Linux distribution.</p>
+<p>Knowing that the game is an executable named <code class="inline-code" data-themeable>advent</code> in my current working directory, I can execute this command in the running container to play the game:</p>
+<div class="code-block-wrapper" data-themeable><div><pre class="code-block"><code class="language-shell">./advent</code></pre></div></div>
+<div class="code-block-wrapper" data-themeable><div><pre class="code-block"><code class="language-text">Welcome to Adventure!!  Would you like instructions?
+
+&gt; yes
+
+Somewhere nearby is Colossal Cave, where others have found fortunes in
+treasure and gold, though it is rumored that some who enter are never
+seen again.  Magic is said to work in the cave.  I will be your eyes
+and hands.  Direct me with commands of 1 or 2 words.  I should warn
+you that I look at only the first five letters of each word, so you&#x27;ll
+have to enter &quot;northeast&quot; as &quot;ne&quot; to distinguish it from &quot;north&quot;.
+You can type &quot;help&quot; for some general hints.  For information on how
+to end your adventure, scoring, etc., type &quot;info&quot;.
+                  - - -
+This program was originally developed by Willie Crowther.  Most of the
+features of the current program were added by Don Woods.
+
+You are standing at the end of a road before a small brick building.
+Around you is a forest.  A small stream flows out of the building and
+down a gully.
+
+&gt; </code></pre></div></div>
+<p>And now it’s time to play. :-)</p>
+<h1 class="post-body-header">
+              <a name="references" href="#references">References</a>
+            </h1><ol data-ref>
+    <li id="cite-1"><a class="raw-html-link" data-themeable href="#ref-1">^</a>
+        Research paper:
+        <a class="raw-html-link" data-themeable href="https://thijs.ai/papers/scheepers-virtualization-containerization.pdf">Virtualization and Containerization of Application Infrastructure: A Comparison</a>
+    </li>
+    <li id="cite-2"><a class="raw-html-link" data-themeable href="#ref-2">^</a>
+        Web Article:
+        <a class="raw-html-link" data-themeable href="https://hackernoon.com/what-is-containerization-83ae53a709a6">What is containerization ?</a>
+    </li>
+    <li id="cite-3"><a class="raw-html-link" data-themeable href="#ref-3">^</a>
+        Web Article:
+        <a class="raw-html-link" data-themeable href="https://www.networkworld.com/article/2226996/software-containers--used-more-frequently-than-most-realize.html">Software Containers: Used More Frequently than Most Realize</a>
+    </li>
+    <li id="cite-4"><a class="raw-html-link" data-themeable href="#ref-4">^</a>
+        Web Article:
+        <a class="raw-html-link" data-themeable href="https://phoenixnap.com/kb/docker-image-vs-container">Docker Image Vs Container</a>
+    </li>
+    <li id="cite-5"><a class="raw-html-link" data-themeable href="#ref-5">^</a>
+        Documentation:
+        <a class="raw-html-link" data-themeable href="https://docs.docker.com/get-started/#images-and-containers">Docker: Orientation and Setup</a>
+    </li>
+    <li id="cite-6"><a class="raw-html-link" data-themeable href="#ref-6">^</a>
+        Web Article:
+        <a class="raw-html-link" data-themeable href="https://medium.com/@jessgreb01/digging-into-docker-layers-c22f948ed612#:~:text=You%20can%20view%20the%20contents,images%20while%20maintaining%20their%20integrity">Digging into Docker Layers</a>
+    </li>
+</ol>
+</div><footer id="footer">
+    <small>© 2020 Alessio Palladino</small>
+</footer>    </div>
+    <script>"use strict";!function(){var c=null;function t(){localStorage.getItem("theme")||(window.matchMedia("(prefers-color-scheme: dark)").matches?r("dark"):window.matchMedia("(prefers-color-scheme: light)").matches&&r("light"))}function n(){var e=document.getElementById("navbar");return e&&null!==(e=e.dataset.theme)&&void 0!==e?e:null}function a(){var e=localStorage.getItem("theme");e&&e!==n()&&r(e)}function r(e){if(c){for(var t=0;t<c.length;t++){var n=c[t];(n instanceof HTMLElement||n instanceof SVGElement)&&(n.dataset.theme=e)}var a,r=document.getElementById("theme-link");"light"===e?r&&r.setAttribute("href","/style/github.css"):r&&r.setAttribute("href","/style/tomorrow-night-bright.css"),a=e,(r=document.getElementById("switch-theme-btn"))&&r instanceof HTMLInputElement&&(r.checked="dark"===a)}}!function(){c=document.querySelectorAll(" [data-themeable] "),t(),a(),function(){try{window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",function(e){t()})}catch(e){try{window.matchMedia("(prefers-color-scheme: dark)").addListener(function(e){t()})}catch(e){console.error(e)}}}();var e=document.getElementById("switch-theme-btn");null!=e&&e.addEventListener("click",function(){var e,t=null;localStorage.getItem("theme")&&"dark"===localStorage.getItem("theme")?t="light":localStorage.getItem("theme")&&"light"===localStorage.getItem("theme")?t="dark":localStorage.getItem("theme")||(t=(e=n())&&"dark"==e?"light":"dark"),t=null!=t?t:"light",localStorage.setItem("theme",t),a()})}(),setInterval(function(){a()},2e3)}()</script>
+
+</body>
+
+</html>

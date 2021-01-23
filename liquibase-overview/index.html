@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en" data-themeable>
+
+<head>
+    <title>Version Database Changes With Liquibase</title>
+    <!-- Meta. -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Learn" what liquibase is and how it can be used to version database changes.>
+
+    <!-- Favicon. -->
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.png">
+
+    <!-- Styling for common components. -->
+    <link rel="stylesheet" href="/style/common.css">
+    <!-- Conditional CSS. -->
+    <link rel="stylesheet" href="/style/post.css">
+    <link rel="stylesheet" href="/style/github.css" id="theme-link">
+
+    <!-- Common scripts. -->
+    <script src="/scripts/common.js" async></script>
+    <!-- Conditional scripts. -->
+</head>
+
+<body>
+    <div id="top-mask" data-themeable></div>
+    <header>
+        <div id="navbar" data-themeable>
+            <h1 class="blogName"><a id="blog-name" href="/index.html">Alessio Palladino</a></h1>
+            <!-- Rounded switch -->
+            <div id="dark-mode-switch-wrapper" class="not-selectable">
+                <label class="switch" for="switch-theme-btn">
+                    Toggle color theme.
+                    <input id="switch-theme-btn" type="checkbox">
+                    <span class="slider round">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" class="moon"><path d="M0 0h24v24H0z" fill="none"/><path fill="white" d="M9 2c-1.05 0-2.05.16-3 .46 4.06 1.27 7 5.06 7 9.54 0 4.48-2.94 8.27-7 9.54.95.3 1.95.46 3 .46 5.52 0 10-4.48 10-10S14.52 2 9 2z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" class="sun"><path d="M0 0h24v24H0z" fill="none"/><path d="M20 15.31L23.31 12 20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/></svg>
+                    </span>
+                </label>
+            </div>
+        </div>
+            <div id="drawer-menu" data-themeable>
+                <div class="link-wrapper" data-themeable><a href="/index.html">Blog</a></div>
+                <div class="link-wrapper" data-themeable><a href="/projects.html">Projects</a></div>
+                <div class="link-wrapper" data-themeable><a href="/about.html">About</a></div>
+                <div id="drawer-menu-handle" data-themeable>
+                    <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24" viewBox="0 0 24 24" width="24"><g><rect fill="none" height="24" width="24"/></g><g><g><g><path d="M20,9H4v2h16V9z M4,15h16v-2H4V15z"/></g></g></g></svg>
+                </div>
+            </div>
+    </header>    <div id="mask"></div>
+    <div id="content" data-themeable>
+<div class="post-content">
+    <h1 class="post-title"><a href="/liquibase-overview/index.html">Version Database Changes With Liquibase</a></h1>
+    <small class="post-info">
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" data-themeable><path d="M0 0h24v24H0z" fill="none"/><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+            Published Sat Jun 20 2020
+        </div>
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" class="schedule" data-themeable><path d="M0 0h24v24H0z" fill="none"/><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/><path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+            10 min read
+        </div>
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" class="tag-icon" data-themeable><path d="M0 0h24v24H0z" fill="none"/><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/></svg>
+            <a class="post-tag" href="/tags/Backend/index.html" title="See all posts with this tag." data-themeable>Backend</a>
+        </div>
+    </small>
+    
+        <div class="toc-wrapper">
+            <div class="toc" data-themeable>
+            <h1 class="contents-title">Contents</h1>
+                <a href="#what-liquibase-does">
+<h1 class="toc-entry" style="text-indent:0" data-themeable>
+<span class="toc-numb">1 </span>What Liquibase does</h1></a>
+                <a href="#liquibase-core-concepts">
+<h1 class="toc-entry" style="text-indent:0" data-themeable>
+<span class="toc-numb">2 </span>Liquibase core concepts</h1></a>
+                <a href="#how-database-changes-are-represented">
+<h2 class="toc-entry" style="text-indent:10px" data-themeable>
+<span class="toc-numb">2.1 </span>How database changes are represented</h2></a>
+                <a href="#the-changeset-and-changetype">
+<h3 class="toc-entry" style="text-indent:20px" data-themeable>
+<span class="toc-numb">2.1.1 </span>The changeset and changetype</h3></a>
+                <a href="#changeset-uniqueness">
+<h3 class="toc-entry" style="text-indent:20px" data-themeable>
+<span class="toc-numb">2.1.2 </span>Changeset uniqueness</h3></a>
+                <a href="#the-changelog">
+<h3 class="toc-entry" style="text-indent:20px" data-themeable>
+<span class="toc-numb">2.1.3 </span>The changelog</h3></a>
+                <a href="#how-database-changes-are-managed">
+<h2 class="toc-entry" style="text-indent:10px" data-themeable>
+<span class="toc-numb">2.2 </span>How database changes are managed</h2></a>
+                <a href="#the-code-class-inline-code-data-themeable-databasechangelog-code-table">
+<h3 class="toc-entry" style="text-indent:20px" data-themeable>
+<span class="toc-numb">2.2.1 </span>The <code class="inline-code" data-themeable>DATABASECHANGELOG</code> table</h3></a>
+                <a href="#using-the-liquibase-cli">
+<h1 class="toc-entry" style="text-indent:0" data-themeable>
+<span class="toc-numb">3 </span>Using the Liquibase CLI</h1></a>
+                <a href="#setting-up-a-directory">
+<h2 class="toc-entry" style="text-indent:10px" data-themeable>
+<span class="toc-numb">3.1 </span>Setting up a directory</h2></a>
+                <a href="#liquibase-commands">
+<h2 class="toc-entry" style="text-indent:10px" data-themeable>
+<span class="toc-numb">3.2 </span>Liquibase commands</h2></a>
+                <a href="#summary-of-concepts">
+<h1 class="toc-entry" style="text-indent:0" data-themeable>
+<span class="toc-numb">4 </span>Summary of concepts</h1></a>
+                <a href="#integrating-liquibase">
+<h1 class="toc-entry" style="text-indent:0" data-themeable>
+<span class="toc-numb">5 </span>Integrating Liquibase</h1></a>
+            </div>
+        </div>
+    <p>Picture this, you’re part of a a team of developers with a backend written in Java. You use <a href="https://hibernate.org/orm/" title="" class="md-link" data-themeable>Hibernate</a> as your JPA provider (an <a href="https://en.wikipedia.org/wiki/Object-relational_mapping" title="" class="md-link" data-themeable>ORM</a> tool), which allows you to persist regular java classes to a database (a.k.a JPA entities). Whenever you start your application in your local environment you set Hibernate’s <code class="inline-code" data-themeable>hibernate.hbm2ddl.auto</code> property to <code class="inline-code" data-themeable>update</code>, which tells Hibernate to automatically read any new changes to an entity and <em>update</em> its schema accordingly. </p>
+<p>As cool as this Hibernate feature is, using it in a production environment is not recommended. Therefore your team writes SQL scripts to track each change made to an entity, and all changes to the production database are released manually. These SQL scripts are organized by major release and are versioned along with the rest of the source code.</p>
+<p>So why would your team consider working with a database versioning tool like Liquibase? The short answer: to reap many of the same benefits you get from using version control with your source code. In fact, some of the problems associated with the above SQL script setup are:</p>
+<ul>
+<li>There is no formal concept of unit of change to the database, it’s hard to delimit the scope of a change and infer its purpose.</li>
+<li>There is no obvious way to know which changes have already been applied to the database.</li>
+<li>There is no indication of who authored a change.</li>
+<li>Changes must be deployed manually every time.</li>
+</ul>
+<p>Liquibase offers solutions to these types of problems, although note that there are other tools such as <a href="https://flywaydb.org/" title="" class="md-link" data-themeable>Flyway</a> which offer similar solutions. In fact, the dev team at my company was in a similar situation and I was tasked with researching a better way to version and deploy changes to our database. In this post I will share with you some of the core concepts and benefits of using Liquibase.</p>
+<h1 class="post-body-header">
+              <a name="what-liquibase-does" href="#what-liquibase-does">What Liquibase does</a>
+            </h1><p><a href="https://www.liquibase.org/" title="" class="md-link" data-themeable>Liquibase</a> is a program that versions changes made to a database. It can be used via a variety of tools: CLI, API, Maven, Ant… (I will be focusing on a workflow using the CLI).</p>
+<p>Here is an example of a basic workflow using Liquibase:</p>
+<ol>
+<li>Write database changes to a (version controlled) file (called a <em>changelog</em> in Liquibase, but I will explain this later).</li>
+<li>Run a <code class="inline-code" data-themeable>liquibase update</code> command from your terminal.</li>
+<li>Liquibase will check which changes have already been applied to your database.</li>
+<li>Liquibase will apply only those changes which have not yet been applied.</li>
+</ol>
+<p>This was a very cut and dry example of how Liquibase can be used. In the following section I will explain the Liquibase concepts behind these steps in greater detail, ending with a discussion regarding the integration of Liquibase in your development workflow.</p>
+<h1 class="post-body-header">
+              <a name="liquibase-core-concepts" href="#liquibase-core-concepts">Liquibase core concepts</a>
+            </h1><h2 class="post-body-header">
+              <a name="how-database-changes-are-represented" href="#how-database-changes-are-represented">How database changes are represented</a>
+            </h2><h3 class="post-body-header">
+              <a name="the-changeset-and-changetype" href="#the-changeset-and-changetype">The changeset and changetype</a>
+            </h3><p>The fundamental atomic unit of change to a database in Liquibase is known as a <a href="https://docs.liquibase.com/concepts/basic/changeset.html" title="" class="md-link" data-themeable><strong>changeset</strong></a>. A changeset is a change you want to make to the database (e.g. adding a column, creating a table, deleting a row…). A changeset is also what Liquibase keeps track of to determine what has changed in a database (similar to a <em>commit</em> in Git).</p>
+<p>You can group more than one change in a changeset however it’s best practice for a changeset to correspond to a single logically coherent change to your database (again like a git commit, you don’t want to throw a bunch of changes in a changeset otherwise the purpose of that changeset will be less clear).</p>
+<p>But what do you call all the changes that you can put in a changeset? Enter the <strong>changetype</strong>. Changesets are composed by one or more changetype(s), which describe the <em>type</em> of a change occurring in a changeset (<a href="https://docs.liquibase.com/change-types/community/home.html" title="" class="md-link" data-themeable>see all available changetypes</a>).</p>
+<p>Example changeset that adds a column to a table:</p>
+<div class="code-block-wrapper" data-themeable><div><pre class="code-block"><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">changeSet</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;3&quot;</span> <span class="hljs-attr">author</span>=<span class="hljs-string">&quot;other.dev&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">addColumn</span> <span class="hljs-attr">tableName</span>=<span class="hljs-string">&quot;person&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">column</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;country&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;varchar(2)&quot;</span>/&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">addColumn</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">changeSet</span>&gt;</span></code></pre></div></div>
+<p>The above changeset uses the <code class="inline-code" data-themeable>addColumn</code> changetype.</p>
+<h3 class="post-body-header">
+              <a name="changeset-uniqueness" href="#changeset-uniqueness">Changeset uniqueness</a>
+            </h3><p>So now we know that a changeset is the basic unit of change in Liquibase. But if Liquibase is supposed to track and manage all our changesets (offering update and rollback commands…), how does it differentiate between changesets to tell them apart? What makes a changeset unique?</p>
+<p>You may have noticed the <code class="inline-code" data-themeable>id</code> and <code class="inline-code" data-themeable>author</code> properties of the above changeset. In fact, a changeset is uniquely identified given an <code class="inline-code" data-themeable>id</code>, an <code class="inline-code" data-themeable>author</code>, and the filename of the changeset (all of which are used to generate an md5 checksum).</p>
+<p>Note that the <code class="inline-code" data-themeable>id</code> property does not need to be a number, it could be a descriptive string (e.g. <code class="inline-code" data-themeable>id=&quot;adding-person-column&quot;</code>). It’s a good idea to agree on certain conventions like this with your entire team so that you end up with consistently formatted and readable changesets. In my case I ended up writing up a small page of internal documentation, describing the way our team should approach writing changesets.</p>
+<h3 class="post-body-header">
+              <a name="the-changelog" href="#the-changelog">The changelog</a>
+            </h3><p>We’ve got out changsets and changetypes, now when you write them, where do you put them? When you write a changeset, you’ll have it stored in a <strong>changelog</strong>, which is a file that groups together multiple changesets. </p>
+<p>Changelogs can be written in XML, YAML, or JSON. The changetypes you will use in your changesets are <em>database agnostic</em>, meaning Liquibase will generate database specific SQL from your changelogs depending on which target database you’re telling liquibase to apply the changes to. You can inspect the SQL Liquibase will execute during a <code class="inline-code" data-themeable>liquibase update</code> with the following command:</p>
+<div class="code-block-wrapper" data-themeable><div><pre class="code-block"><code class="language-shell">liquibase updateSQL</code></pre></div></div>
+<p>This is extremely useful because it shows you exactly what Liquibase will execute on your database, so you can rest assured that you wrote your changesets correctly.</p>
+<p>If need be, you also have the option of writing changelogs directly in SQL for database specific changes.</p>
+<p>Usually best practice is to group changesets according to some logic, such as having each changelog correspond to a certain release version of your application. To do this note that you can insert changelogs in changelogs (e.g. using the <a href="https://docs.liquibase.com/concepts/advanced/include.html" title="" class="md-link" data-themeable><em>insert</em> tag</a>). Good practice is to have one “master” changelog which references the other changelogs you wrote.</p>
+<p>To recap, a <em>changeset</em> can include multiple <em>changetypes</em> (although fewer is better), and a <em>changelog</em> is made up of multiple <em>changesets</em>.</p>
+<h2 class="post-body-header">
+              <a name="how-database-changes-are-managed" href="#how-database-changes-are-managed">How database changes are managed</a>
+            </h2><h3 class="post-body-header">
+              <a name="the-code-class-inline-code-data-themeable-databasechangelog-code-table" href="#the-code-class-inline-code-data-themeable-databasechangelog-code-table">The <code class="inline-code" data-themeable>DATABASECHANGELOG</code> table</a>
+            </h3><p>When you run the update command for the first time, Liquibase will create a <code class="inline-code" data-themeable>DATABASECHANGELOG</code> table for you. This table is the key to how Liquibase tracks which changes have already been applied to your database.</p>
+<p>The <code class="inline-code" data-themeable>DATABASECHANGELOG</code> table will store all the changesets which have been applied in the order in which they were applied in. When you run the update command <strong>Liquibase applies your changesets in the order in which they appear in your changelogs</strong>.</p>
+<p>When you perform an update, Liquibase will compare the changesets that are recorded in the <code class="inline-code" data-themeable>DATABASECHANGELOG</code> table with the current state of your changelogs, applying any changesets which have not yet been applied.</p>
+<p>For example take the following changelog:</p>
+<div class="code-block-wrapper" data-themeable><div class="copy-btn-wrapper">
+		<small class="filename">changelog.xml</small>
+	<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" class="copy-btn not-selectable" data-themeable><path d="M0 0h24v24H0z" fill="none"/><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/><title>Copy</title></svg>
+	<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" class="done-icon not-selectable hidden"><path d="M0 0h24v24H0z" fill="none"/><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+</div><div><pre><code class="lineBar" data-themeable><span>1</span>
+<span>2</span>
+<span>3</span>
+<span>4</span>
+<span>5</span>
+<span>6</span>
+<span>7</span>
+<span>8</span>
+<span>9</span>
+<span>10</span>
+<span>11</span>
+<span>12</span>
+<span>13</span>
+<span>14</span>
+<span>15</span>
+<span>16</span>
+<span>17</span>
+<span>18</span>
+<span>19</span>
+<span>20</span>
+<span>21</span>
+<span>22</span>
+<span>23</span>
+<span>24</span>
+<span>25</span>
+<span>26</span>
+<span>27</span>
+<span>28</span>
+<span>29</span>
+<span>30</span>
+<span>31</span>
+<span>32</span>
+<span>33</span>
+<span>34</span>
+<span>35</span>
+<span>36</span>
+<span>37</span>
+<span>38</span>
+<span>39</span>
+<span>40</span>
+<span>41</span>
+<span>42</span>
+<span>43</span>
+</code></pre><pre class="code-block"><code class="language-xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">databaseChangeLog</span>
+        <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://www.liquibase.org/xml/ns/dbchangelog&quot;</span>
+        <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+        <span class="hljs-attr">xmlns:pro</span>=<span class="hljs-string">&quot;http://www.liquibase.org/xml/ns/pro&quot;</span>
+        <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd
+    http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.10.xsd &quot;</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">changeSet</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;1&quot;</span> <span class="hljs-attr">author</span>=<span class="hljs-string">&quot;your.name&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">createTable</span> <span class="hljs-attr">tableName</span>=<span class="hljs-string">&quot;person&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">column</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;id&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;int&quot;</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">constraints</span> <span class="hljs-attr">primaryKey</span>=<span class="hljs-string">&quot;true&quot;</span>/&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">column</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">column</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;name&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;varchar(50)&quot;</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">constraints</span> <span class="hljs-attr">nullable</span>=<span class="hljs-string">&quot;false&quot;</span>/&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">column</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">column</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;address1&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;varchar(50)&quot;</span>/&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">column</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;address2&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;varchar(50)&quot;</span>/&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">column</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;city&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;varchar(30)&quot;</span>/&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">createTable</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">changeSet</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">changeSet</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;2&quot;</span> <span class="hljs-attr">author</span>=<span class="hljs-string">&quot;your.name&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">createTable</span> <span class="hljs-attr">tableName</span>=<span class="hljs-string">&quot;company&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">column</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;id&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;int&quot;</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">constraints</span> <span class="hljs-attr">primaryKey</span>=<span class="hljs-string">&quot;true&quot;</span>/&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">column</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">column</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;name&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;varchar(50)&quot;</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">constraints</span> <span class="hljs-attr">nullable</span>=<span class="hljs-string">&quot;false&quot;</span>/&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">column</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">column</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;address1&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;varchar(50)&quot;</span>/&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">column</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;address2&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;varchar(50)&quot;</span>/&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">column</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;city&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;varchar(30)&quot;</span>/&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">createTable</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">changeSet</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">changeSet</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;3&quot;</span> <span class="hljs-attr">author</span>=<span class="hljs-string">&quot;other.dev&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">addColumn</span> <span class="hljs-attr">tableName</span>=<span class="hljs-string">&quot;person&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">column</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;country&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;varchar(2)&quot;</span>/&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">addColumn</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">changeSet</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">databaseChangeLog</span>&gt;</span></code></pre></div><textarea class="copy-content" readonly="readonly"><?xml version="1.0" encoding="UTF-8"?>
+
+<databasechangelog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xsi:schemalocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd
+    http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.10.xsd ">
+
+    <changeset id="1" author="your.name">
+        <createtable tablename="person">
+            <column name="id" type="int">
+                <constraints primarykey="true">
+            </constraints></column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false">
+            </constraints></column>
+            <column name="address1" type="varchar(50)">
+            <column name="address2" type="varchar(50)">
+            <column name="city" type="varchar(30)">
+        </column></column></column></createtable>
+    </changeset>
+
+    <changeset id="2" author="your.name">
+        <createtable tablename="company">
+            <column name="id" type="int">
+                <constraints primarykey="true">
+            </constraints></column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false">
+            </constraints></column>
+            <column name="address1" type="varchar(50)">
+            <column name="address2" type="varchar(50)">
+            <column name="city" type="varchar(30)">
+        </column></column></column></createtable>
+    </changeset>
+
+    <changeset id="3" author="other.dev">
+        <addcolumn tablename="person">
+            <column name="country" type="varchar(2)">
+        </column></addcolumn>
+    </changeset>
+</databasechangelog></textarea></div>
+<p>The above changelog would result in the following <code class="inline-code" data-themeable>DATABASECHANGELOG</code> table (if you haven’t already applied these changesets):</p>
+<p></p><div class="img-container"><img src="/images/dbcl-eg.png" width="1248" height="150" alt="The DATABASECHANGELOG table"></div><p></p>
+<p>Notice how the order of the rows in the table above matches the order of the changesets in the changelog!</p>
+<p>Also note that if you were to insert a changeset with <code class="inline-code" data-themeable>id=&quot;4&quot;</code> between the 2nd and 3rd changesets above, the new 4th changeset would be appended to the table as if you had appended it at the end of the changelog file.</p>
+<p>Liquibase also has a <a href="https://docs.liquibase.com/concepts/databasechangeloglock-table.html?_ga=2.174902688.304055194.1599898062-864900359.1599379189" title="" class="md-link" data-themeable>DATABASECHANGELOGLOCK</a> table to prevent conflicts in case multiple instances of Liquibase are run on the same database.</p>
+<h1 class="post-body-header">
+              <a name="using-the-liquibase-cli" href="#using-the-liquibase-cli">Using the Liquibase CLI</a>
+            </h1><h2 class="post-body-header">
+              <a name="setting-up-a-directory" href="#setting-up-a-directory">Setting up a directory</a>
+            </h2><p>There are many ways to use Liquibase, but to explain the basics of what is needed to run the tool I will take as an example a developer that wants to run Liquibase using the CLI. </p>
+<p>To use the Liquibase CLI you will need to create a directory with two important files:</p>
+<ol>
+<li>A <code class="inline-code" data-themeable>liquibase.properties</code> file.</li>
+<li>A changelog.</li>
+</ol>
+<p>All Liquibase commands you run in this directory will read from the properties file. The changelog file must be referenced in the properties file so that Liquibase knows which changesets to apply.</p>
+<p>As already mentioned, the command you will be using to apply your changesets is:</p>
+<div class="code-block-wrapper" data-themeable><div><pre class="code-block"><code class="language-shell">liquibase update</code></pre></div></div>
+<h2 class="post-body-header">
+              <a name="liquibase-commands" href="#liquibase-commands">Liquibase commands</a>
+            </h2><p>Liquibase offers some useful commands to ease the development process (<a href="https://docs.liquibase.com/commands/community/home.html" title="" class="md-link" data-themeable>see all commands</a>). For example, as already mentioned, you can tell liquibase to show you the SQL that will be applied to your database given some changesets you just wrote.<br>You can also rollback changesets which have been applied in various ways (by count, by date, by label…)</p>
+<p>If you’re interested in trying out Liquibase you can checkout the <a href="https://www.liquibase.org/get-started/using-the-liquibase-installer" title="" class="md-link" data-themeable>official Liquibase tutorial for beginners</a> (the tutorial will have you using the Liquibase CLI).</p>
+<h1 class="post-body-header">
+              <a name="summary-of-concepts" href="#summary-of-concepts">Summary of concepts</a>
+            </h1><p>To summarize the above discussion. Liquibase is a database versioning program which given a set of changelogs, applies your changesets to a database and keeps track of them in a <code class="inline-code" data-themeable>DATABASECHANGELOG</code> table.</p>
+<p>The key Liquibase concepts to takeaway are:</p>
+<ul>
+<li>The changeset.</li>
+<li>The changetype</li>
+<li>The changelog</li>
+<li>The <code class="inline-code" data-themeable>DATABASECHANGELOG</code> table.</li>
+</ul>
+<p>Here is a diagram representing a simple workflow using Liquibase with the concepts introduced throughout this post:</p>
+<p></p><div class="img-container"><img src="/images/liquibase-overview.png" width="551" height="296" alt="Liquibase overview"></div><p></p>
+<h1 class="post-body-header">
+              <a name="integrating-liquibase" href="#integrating-liquibase">Integrating Liquibase</a>
+            </h1><p>Learning how to use Liquibase is simple, the more challenging aspect is how to approach integrating it if you already have an established software product in production. Thankfully Liquibase is flexible from this point of view, as there are <a href="https://docs.liquibase.com/tools-integrations/home.html" title="" class="md-link" data-themeable>a variety of ways to integrate it</a> and start using it.</p>
+<p>In general, there are two main approaches to deploying changes to a database, you can either:</p>
+<ol>
+<li>Compare the current state of the database with a desired state and use Liquibase to generate a changelog with the changes you need to get to the desired state (<strong>state-based</strong> database deployment).</li>
+<li>Declare the changes you want to apply to a database and only apply those specific changes (<strong>migration-based</strong> database deployment).</li>
+</ol>
+<p>You can read more about <a href="https://www.liquibase.org/get-started/database-migration" title="" class="md-link" data-themeable>state-based vs. migration-based database deployment</a>.</p>
+<p>If you’re a new team without an established product you can simply start using the migration-based approach.</p>
+<p>If your team already manages a product you could consider starting by generating a changelog which contains all changes needed to match the current state of your database.</p>
+<p>My team already has an established product and we found it easier to begin using Liquibase starting from a major release, directly using the migration-based approach (this is also how Liquibase is primarily intended to be used). </p>
+<p>I recommend starting by using Liquibase experimentally at first to see how the tool feels. Gradually you can then fully switch over once you find the most comfortable way to integrate it in you development process.</p>
+
+</div><footer id="footer">
+    <small>© 2020 Alessio Palladino</small>
+</footer>    </div>
+    <script>"use strict";!function(){var c=null;function t(){localStorage.getItem("theme")||(window.matchMedia("(prefers-color-scheme: dark)").matches?r("dark"):window.matchMedia("(prefers-color-scheme: light)").matches&&r("light"))}function n(){var e=document.getElementById("navbar");return e&&null!==(e=e.dataset.theme)&&void 0!==e?e:null}function a(){var e=localStorage.getItem("theme");e&&e!==n()&&r(e)}function r(e){if(c){for(var t=0;t<c.length;t++){var n=c[t];(n instanceof HTMLElement||n instanceof SVGElement)&&(n.dataset.theme=e)}var a,r=document.getElementById("theme-link");"light"===e?r&&r.setAttribute("href","/style/github.css"):r&&r.setAttribute("href","/style/tomorrow-night-bright.css"),a=e,(r=document.getElementById("switch-theme-btn"))&&r instanceof HTMLInputElement&&(r.checked="dark"===a)}}!function(){c=document.querySelectorAll(" [data-themeable] "),t(),a(),function(){try{window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",function(e){t()})}catch(e){try{window.matchMedia("(prefers-color-scheme: dark)").addListener(function(e){t()})}catch(e){console.error(e)}}}();var e=document.getElementById("switch-theme-btn");null!=e&&e.addEventListener("click",function(){var e,t=null;localStorage.getItem("theme")&&"dark"===localStorage.getItem("theme")?t="light":localStorage.getItem("theme")&&"light"===localStorage.getItem("theme")?t="dark":localStorage.getItem("theme")||(t=(e=n())&&"dark"==e?"light":"dark"),t=null!=t?t:"light",localStorage.setItem("theme",t),a()})}(),setInterval(function(){a()},2e3)}()</script>
+
+</body>
+
+</html>
