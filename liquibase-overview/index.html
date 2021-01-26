@@ -9,16 +9,16 @@
     <meta name="description" content="Learn" what liquibase is and how it can be used to version database changes.>
 
     <!-- Favicon. -->
-    <link rel="icon" type="image/svg+xml" href="/images/favicon.png">
+    <link rel="icon" type="image/svg+xml" href="../images/favicon.png">
 
     <!-- Styling for common components. -->
-    <link rel="stylesheet" href="/style/common.css">
+    <link rel="stylesheet" href="../style/common.css">
     <!-- Conditional CSS. -->
-    <link rel="stylesheet" href="/style/post.css">
-    <link rel="stylesheet" href="/style/github.css" id="theme-link">
+    <link rel="stylesheet" href="../style/post.css">
+    <link rel="stylesheet" href="../style/github.css" id="theme-link">
 
     <!-- Common scripts. -->
-    <script src="/scripts/common.js" async></script>
+    <script src="../scripts/common.js" async></script>
     <!-- Conditional scripts. -->
 </head>
 
@@ -26,7 +26,7 @@
     <div id="top-mask" data-themeable></div>
     <header>
         <div id="navbar" data-themeable>
-            <h1 class="blogName"><a id="blog-name" href="/index.html">Alessio Palladino</a></h1>
+            <h1 class="blogName"><a id="blog-name" href="../index.html">Alessio Palladino</a></h1>
             <!-- Rounded switch -->
             <div id="dark-mode-switch-wrapper" class="not-selectable">
                 <label class="switch" for="switch-theme-btn">
@@ -40,9 +40,9 @@
             </div>
         </div>
             <div id="drawer-menu" data-themeable>
-                <div class="link-wrapper" data-themeable><a href="/index.html">Blog</a></div>
-                <div class="link-wrapper" data-themeable><a href="/projects.html">Projects</a></div>
-                <div class="link-wrapper" data-themeable><a href="/about.html">About</a></div>
+                <div class="link-wrapper" data-themeable><a href="../index.html">Blog</a></div>
+                <div class="link-wrapper" data-themeable><a href="../projects.html">Projects</a></div>
+                <div class="link-wrapper" data-themeable><a href="../about.html">About</a></div>
                 <div id="drawer-menu-handle" data-themeable>
                     <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24" viewBox="0 0 24 24" width="24"><g><rect fill="none" height="24" width="24"/></g><g><g><g><path d="M20,9H4v2h16V9z M4,15h16v-2H4V15z"/></g></g></g></svg>
                 </div>
@@ -50,7 +50,7 @@
     </header>    <div id="mask"></div>
     <div id="content" data-themeable>
 <div class="post-content">
-    <h1 class="post-title"><a href="/liquibase-overview/index.html">Version Database Changes With Liquibase</a></h1>
+    <h1 class="post-title"><a href="index.html">Version Database Changes With Liquibase</a></h1>
     <small class="post-info">
         <div>
             <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" data-themeable><path d="M0 0h24v24H0z" fill="none"/><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
@@ -62,7 +62,7 @@
         </div>
         <div>
             <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" class="tag-icon" data-themeable><path d="M0 0h24v24H0z" fill="none"/><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/></svg>
-            <a class="post-tag" href="/tags/Backend/index.html" title="See all posts with this tag." data-themeable>Backend</a>
+            <a class="post-tag" href="../tags/Backend/index.html" title="See all posts with this tag." data-themeable>Backend</a>
         </div>
     </small>
     
@@ -298,7 +298,7 @@
     </changeset>
 </databasechangelog></textarea></div>
 <p>The above changelog would result in the following <code class="inline-code" data-themeable>DATABASECHANGELOG</code> table (if you haven’t already applied these changesets):</p>
-<p></p><div class="img-container"><img src="/images/dbcl-eg.png" width="1248" height="150" alt="The DATABASECHANGELOG table"></div><p></p>
+<p></p><div class="img-container"><img src="../images/dbcl-eg.png" width="1248" height="150" alt="The DATABASECHANGELOG table"></div><p></p>
 <p>Notice how the order of the rows in the table above matches the order of the changesets in the changelog!</p>
 <p>Also note that if you were to insert a changeset with <code class="inline-code" data-themeable>id=&quot;4&quot;</code> between the 2nd and 3rd changesets above, the new 4th changeset would be appended to the table as if you had appended it at the end of the changelog file.</p>
 <p>Liquibase also has a <a href="https://docs.liquibase.com/concepts/databasechangeloglock-table.html?_ga=2.174902688.304055194.1599898062-864900359.1599379189" title="" class="md-link" data-themeable>DATABASECHANGELOGLOCK</a> table to prevent conflicts in case multiple instances of Liquibase are run on the same database.</p>
@@ -330,7 +330,7 @@
 <li>The <code class="inline-code" data-themeable>DATABASECHANGELOG</code> table.</li>
 </ul>
 <p>Here is a diagram representing a simple workflow using Liquibase with the concepts introduced throughout this post:</p>
-<p></p><div class="img-container"><img src="/images/liquibase-overview.png" width="551" height="296" alt="Liquibase overview"></div><p></p>
+<p></p><div class="img-container"><img src="../images/liquibase-overview.png" width="551" height="296" alt="Liquibase overview"></div><p></p>
 <h1 class="post-body-header">
               <a name="integrating-liquibase" href="#integrating-liquibase">Integrating Liquibase</a>
             </h1><p>Learning how to use Liquibase is simple, the more challenging aspect is how to approach integrating it if you already have an established software product in production. Thankfully Liquibase is flexible from this point of view, as there are <a href="https://docs.liquibase.com/tools-integrations/home.html" title="" class="md-link" data-themeable>a variety of ways to integrate it</a> and start using it.</p>
@@ -348,7 +348,7 @@
 </div><footer id="footer">
     <small>© 2020 Alessio Palladino</small>
 </footer>    </div>
-    <script>"use strict";!function(){var c=null;function t(){localStorage.getItem("theme")||(window.matchMedia("(prefers-color-scheme: dark)").matches?r("dark"):window.matchMedia("(prefers-color-scheme: light)").matches&&r("light"))}function n(){var e=document.getElementById("navbar");return e&&null!==(e=e.dataset.theme)&&void 0!==e?e:null}function a(){var e=localStorage.getItem("theme");e&&e!==n()&&r(e)}function r(e){if(c){for(var t=0;t<c.length;t++){var n=c[t];(n instanceof HTMLElement||n instanceof SVGElement)&&(n.dataset.theme=e)}var a,r=document.getElementById("theme-link");"light"===e?r&&r.setAttribute("href","/style/github.css"):r&&r.setAttribute("href","/style/tomorrow-night-bright.css"),a=e,(r=document.getElementById("switch-theme-btn"))&&r instanceof HTMLInputElement&&(r.checked="dark"===a)}}!function(){c=document.querySelectorAll(" [data-themeable] "),t(),a(),function(){try{window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",function(e){t()})}catch(e){try{window.matchMedia("(prefers-color-scheme: dark)").addListener(function(e){t()})}catch(e){console.error(e)}}}();var e=document.getElementById("switch-theme-btn");null!=e&&e.addEventListener("click",function(){var e,t=null;localStorage.getItem("theme")&&"dark"===localStorage.getItem("theme")?t="light":localStorage.getItem("theme")&&"light"===localStorage.getItem("theme")?t="dark":localStorage.getItem("theme")||(t=(e=n())&&"dark"==e?"light":"dark"),t=null!=t?t:"light",localStorage.setItem("theme",t),a()})}(),setInterval(function(){a()},2e3)}()</script>
+    <script>"use strict";!function(){var r=null;function t(){localStorage.getItem("theme")||(window.matchMedia("(prefers-color-scheme: dark)").matches?l("dark"):window.matchMedia("(prefers-color-scheme: light)").matches&&l("light"))}function n(){var e=document.getElementById("navbar");return e&&null!==(e=e.dataset.theme)&&void 0!==e?e:null}function a(){var e=localStorage.getItem("theme");e&&e!==n()&&l(e)}function l(e){if(r){for(var t=0;t<r.length;t++){var n=r[t];(n instanceof HTMLElement||n instanceof SVGElement)&&(n.dataset.theme=e)}var a=document.getElementById("theme-link"),l=(null===(l=null==a?void 0:a.getAttribute("href"))||void 0===l?void 0:l.split("style/")[0])+"style/";"light"===e?a&&a.setAttribute("href",l+"github.css"):a&&a.setAttribute("href",l+"tomorrow-night-bright.css"),a=e,(l=document.getElementById("switch-theme-btn"))&&l instanceof HTMLInputElement&&(l.checked="dark"===a)}}!function(){r=document.querySelectorAll(" [data-themeable] "),t(),a(),function(){try{window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",function(e){t()})}catch(e){try{window.matchMedia("(prefers-color-scheme: dark)").addListener(function(e){t()})}catch(e){console.error(e)}}}();var e=document.getElementById("switch-theme-btn");null!=e&&e.addEventListener("click",function(){var e,t=null;localStorage.getItem("theme")&&"dark"===localStorage.getItem("theme")?t="light":localStorage.getItem("theme")&&"light"===localStorage.getItem("theme")?t="dark":localStorage.getItem("theme")||(t=(e=n())&&"dark"==e?"light":"dark"),t=null!=t?t:"light",localStorage.setItem("theme",t),a()})}(),setInterval(function(){a()},2e3)}()</script>
 
 </body>
 
