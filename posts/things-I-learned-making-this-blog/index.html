@@ -9,16 +9,16 @@
     <meta name="description" content="A" summary of a few random things i learned making this blog.>
 
     <!-- Favicon. -->
-    <link rel="icon" type="image/svg+xml" href="../images/favicon.png">
+    <link rel="icon" type="image/svg+xml" href="../../images/favicon.png">
 
     <!-- Styling for common components. -->
-    <link rel="stylesheet" href="../style/common.css">
+    <link rel="stylesheet" href="../../style/common.css">
     <!-- Conditional CSS. -->
-    <link rel="stylesheet" href="../style/post.css">
-    <link rel="stylesheet" href="../style/github.css" id="theme-link">
+    <link rel="stylesheet" href="../../style/post.css">
+    <link rel="stylesheet" href="../../style/github.css" id="theme-link">
 
     <!-- Common scripts. -->
-    <script src="../scripts/common.js" async></script>
+    <script src="../../scripts/common.js" async></script>
     <!-- Conditional scripts. -->
 </head>
 
@@ -26,7 +26,7 @@
     <div id="top-mask" data-themeable></div>
     <header>
         <div id="navbar" data-themeable>
-            <h1 class="blogName"><a id="blog-name" href="../index.html">Alessio Palladino</a></h1>
+            <h1 class="blogName"><a id="blog-name" href="../../index.html">Alessio Palladino</a></h1>
             <!-- Rounded switch -->
             <div id="dark-mode-switch-wrapper" class="not-selectable">
                 <label class="switch" for="switch-theme-btn">
@@ -40,9 +40,9 @@
             </div>
         </div>
             <div id="drawer-menu" data-themeable>
-                <div class="link-wrapper" data-themeable><a href="../index.html">Blog</a></div>
-                <div class="link-wrapper" data-themeable><a href="../projects.html">Projects</a></div>
-                <div class="link-wrapper" data-themeable><a href="../about.html">About</a></div>
+                <div class="link-wrapper" data-themeable><a href="../../index.html">Blog</a></div>
+                <div class="link-wrapper" data-themeable><a href="../../projects.html">Projects</a></div>
+                <div class="link-wrapper" data-themeable><a href="../../about.html">About</a></div>
                 <div id="drawer-menu-handle" data-themeable>
                     <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24" viewBox="0 0 24 24" width="24"><g><rect fill="none" height="24" width="24"/></g><g><g><g><path d="M20,9H4v2h16V9z M4,15h16v-2H4V15z"/></g></g></g></svg>
                 </div>
@@ -62,7 +62,7 @@
         </div>
         <div>
             <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" class="tag-icon" data-themeable><path d="M0 0h24v24H0z" fill="none"/><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/></svg>
-            <a class="post-tag" href="../tags/Web/index.html" title="See all posts with this tag." data-themeable>Web</a>
+            <a class="post-tag" href="../../tags/Web/index.html" title="See all posts with this tag." data-themeable>Web</a>
         </div>
     </small>
     
@@ -128,8 +128,8 @@
             </h2><p>This actually isn’t mandatory but using <a href="https://www.w3schools.com/css/css3_variables.asp" title="" class="md-link" data-themeable>CSS variables</a> makes it a whole lot easier to implement dark mode. You simply create two themes (light and dark) where each theme will have a set of variables.</p>
 <p>For example just in the case of switching the background color of the <code class="inline-code" data-themeable>html</code> element:</p>
 <div class="code-block-wrapper" data-themeable><div><pre class="code-block"><code class="language-css"><span class="hljs-selector-pseudo">:root</span> {
-    <span class="hljs-attribute">--dark-background</span>: black;
-    <span class="hljs-attribute">--light-background</span>: white;
+    --dark-<span class="hljs-attribute">background</span>: black;
+    --light-<span class="hljs-attribute">background</span>: white;
 }</code></pre></div></div>
 <p>You can declare the variables in <code class="inline-code" data-themeable>:root</code> so as to add them to the global scope.</p>
 <p>Then you can conditionally apply a styling depending on a <code class="inline-code" data-themeable>data-*</code> attribute of an element:</p>
@@ -205,8 +205,8 @@
             </h1><p>This may seem obvious but when developing a website it’s a good idea to interact with it via different devices and see how it behaves in different circumstances. At one point I noticed that when I browsed this site on my iPhone with Safari and I switched to landscape mode, the font size would blow up.</p>
 <p>As it turns out this can be fixed via a CSS property:</p>
 <div class="code-block-wrapper" data-themeable><div><pre class="code-block"><code class="language-css"><span class="hljs-selector-class">.disable-text-inflation</span> {
-    <span class="hljs-attribute">text-size-adjust</span>: none;
-    <span class="hljs-attribute">-webkit-text-size-adjust</span>: none;
+    text-size-adjust: none;
+    -webkit-text-size-adjust: none;
 }</code></pre></div></div>
 <p>This basically tells the browser to not use any text inflation algorithm to resize the text size in certain instances (e.g. mobile Safari when switching to landscape mode).</p>
 <h1 class="post-body-header">
@@ -225,12 +225,12 @@ However I didn’t want to switch to using PNG images for icons because I couldn
 <p>The solution was to use the Google material icons in SVG format. The source code for the SVGs can be found on <a href="https://github.com/google/material-design-icons/blob/master/src/image/brightness_5/materialicons/24px.svg" title="" class="md-link" data-themeable>GitHub</a>.</p>
 <p>I just copy/pasted the SVG into the HTML document directly.</p>
 <p>As far as styling the icons with CSS I found out you can use the <code class="inline-code" data-themeable>fill</code> property to color SVGs:</p>
-<div class="code-block-wrapper" data-themeable><div><pre class="code-block"><code class="language-css"><span class="hljs-selector-tag">svg</span> {
-    <span class="hljs-attribute">fill</span>: black;
+<div class="code-block-wrapper" data-themeable><div><pre class="code-block"><code class="language-css">svg {
+    fill: black;
 }
 
-<span class="hljs-selector-tag">svg</span><span class="hljs-selector-attr">[data-theme=<span class="hljs-string">&#x27;dark&#x27;</span>]</span> {
-    <span class="hljs-attribute">fill</span>: white;
+svg<span class="hljs-selector-attr">[data-theme=<span class="hljs-string">&#x27;dark&#x27;</span>]</span> {
+    fill: white;
 }</code></pre></div></div>
 <p>Side note you can’t use the <code class="inline-code" data-themeable>title</code> attribute with the <code class="inline-code" data-themeable>&lt;svg&gt;</code> tag, but <a href="https://css-tricks.com/svg-title-vs-html-title-attribute/" title="" class="md-link" data-themeable>there are other ways of giving titles to SVGs</a>.</p>
 <h1 class="post-body-header">
