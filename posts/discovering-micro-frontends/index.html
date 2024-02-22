@@ -1,125 +1,82 @@
 <!DOCTYPE html>
-<html lang="en" data-themeable>
-
-<head>
+<html lang="en">
+  <head>
     <title>Discovering Micro-frontends</title>
     <!-- Meta. -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="description" content="What" stuck with me after encountering the topic of micro-frontends for the first time.>
+    <meta name="description" content="What stuck with me after encountering the topic of micro-frontends for the first time.">
 
     <!-- Favicon. -->
-    <link rel="icon" type="image/svg+xml" href="../../images/favicon.png">
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.png">
 
     <!-- Styling for common components. -->
-    <link rel="stylesheet" href="../../style/common.css">
+    <link rel="stylesheet" href="/style/common.css">
     <!-- Conditional CSS. -->
-    <link rel="stylesheet" href="../../style/post.css">
-    <link rel="stylesheet" href="../../style/github.css" id="theme-link">
-
+  
+    <link rel="stylesheet" href="/style/post.css">
+    <link rel="stylesheet" href="/style/github.css" id="theme-link">
+      
     <!-- Common scripts. -->
-    <script src="../../scripts/common.js" async></script>
+    <script src="/scripts/common.js" async></script>
     <!-- Conditional scripts. -->
-</head>
+   </head>
 
-<body>
-    <div id="top-mask" data-themeable></div>
+  <body>
     <header>
-      <div id="navbar" data-themeable>
-        <h1 class="blogName">
-          <a id="blog-name" href="../../index.html">Al's Blog</a>
-        </h1>
-        <!-- Rounded switch -->
-        <div id="dark-mode-switch-wrapper" class="not-selectable">
-          <label class="switch" for="switch-theme-btn">
-            Toggle color theme.
-            <input id="switch-theme-btn" type="checkbox">
-            <span class="slider round">
-              <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" class="moon">
-                <path d="M0 0h24v24H0z" fill="none"/>
-                <path fill="white" d="M9 2c-1.05 0-2.05.16-3 .46 4.06 1.27 7 5.06 7 9.54 0 4.48-2.94 8.27-7 9.54.95.3 1.95.46 3 .46 5.52 0 10-4.48 10-10S14.52 2 9 2z"/>
-              </svg>
-              <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" class="sun">
-                <path d="M0 0h24v24H0z" fill="none"/>
-                <path d="M20 15.31L23.31 12 20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/>
-              </svg>
-            </span>
-          </label>
-        </div>
-      </div>
-      <div id="drawer-menu" data-themeable>
-        <div class="link-wrapper" data-themeable>
-          <a href="../../index.html">Blog</a>
-        </div>
-        <div class="link-wrapper" data-themeable>
-          <a href="../../projects.html">Projects</a>
-        </div>
-        <div class="link-wrapper" data-themeable>
-          <a href="../../about.html">About</a>
-        </div>
-        <div id="drawer-menu-handle" data-themeable>
-          <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24" viewBox="0 0 24 24" width="24">
-            <g><rect fill="none" height="24" width="24"/></g>
-            <g>
-              <g>
-                <g><path d="M20,9H4v2h16V9z M4,15h16v-2H4V15z"/></g>
-              </g>
-            </g>
-          </svg>
-        </div>
+      <div id="navbar">
+        <a href="/">Home</a>
+        <a href="/posts/index.html">Blog</a>
+        <a href="/projects.html">Projects</a>
+        <a href="/about.html">About</a>
       </div>
     </header>
-    <div id="mask"></div>
-    <div id="content" data-themeable>
-<div class="post-content">
-    <h1 class="post-title"><a href="index.html">Discovering Micro-frontends</a></h1>
-    <small class="post-info">
-        <div>
-            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" data-themeable><path d="M0 0h24v24H0z" fill="none"/><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
-            Published Sun Apr 25 2021
-        </div>
-        <div>
-            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" class="schedule" data-themeable><path d="M0 0h24v24H0z" fill="none"/><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/><path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-            5 min read
-        </div>
-        <div>
-            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" class="tag-icon" data-themeable><path d="M0 0h24v24H0z" fill="none"/><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/></svg>
-            <a class="post-tag" href="../../tags/Frontend/index.html" title="See all posts with this tag." data-themeable>Frontend</a>
-        </div>
-    </small>
-    
-        <div class="toc-wrapper">
-            <div class="toc" data-themeable>
-            <h1 class="contents-title">Contents</h1>
-                <a href="#what-are-micro-frontends-">
-<h1 class="toc-entry" style="text-indent:0" data-themeable>
-<span class="toc-numb">1 </span>What are micro-frontends?</h1></a>
-                <a href="#why-micro-frontends-">
-<h1 class="toc-entry" style="text-indent:0" data-themeable>
-<span class="toc-numb">2 </span>Why micro-frontends?</h1></a>
-                <a href="#a-quick-example">
-<h1 class="toc-entry" style="text-indent:0" data-themeable>
-<span class="toc-numb">3 </span>A quick example</h1></a>
-                <a href="#why-em-not-em-micro-frontends-">
-<h1 class="toc-entry" style="text-indent:0" data-themeable>
-<span class="toc-numb">4 </span>Why <em>not</em> micro-frontends?</h1></a>
-                <a href="#complexity">
-<h2 class="toc-entry" style="text-indent:10px" data-themeable>
-<span class="toc-numb">4.1 </span>Complexity</h2></a>
-                <a href="#not-for-small-projects-teams">
-<h2 class="toc-entry" style="text-indent:10px" data-themeable>
-<span class="toc-numb">4.2 </span>Not for small projects/teams</h2></a>
-                <a href="#conclusion">
-<h1 class="toc-entry" style="text-indent:0" data-themeable>
-<span class="toc-numb">5 </span>Conclusion</h1></a>
-            </div>
-        </div>
-    <p>Micro-frontends: set the <code class="inline-code" data-themeable>max-width</code> of your website to <code class="inline-code" data-themeable>10px</code> and you’re good right? WRONG.</p>
+    <div id="content"><div class="post-content">
+  <h1 class="post-title"><a href="index.html">Discovering Micro-frontends</a></h1>
+  <small class="post-info">
+    <div>
+      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+        <path d="M0 0h24v24H0z" fill="none"/>
+        <path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/>
+      </svg>
+      Published Sun Apr 25 2021
+    </div>
+    <div>
+      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" class="schedule">
+        <path d="M0 0h24v24H0z" fill="none"/>
+        <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
+        <path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+      </svg>
+      5 min read
+    </div>
+  </small>
+  
+  <div class="toc-wrapper">
+    <div class="toc">
+      <h1 class="contents-title">Contents</h1>
+       <a href="#what-are-micro-frontends-">
+<h1 class="toc-entry" style="text-indent:0">
+<span class="toc-numb">1 </span>What are micro-frontends?</h1></a>  <a href="#why-micro-frontends-">
+<h1 class="toc-entry" style="text-indent:0">
+<span class="toc-numb">2 </span>Why micro-frontends?</h1></a>  <a href="#a-quick-example">
+<h1 class="toc-entry" style="text-indent:0">
+<span class="toc-numb">3 </span>A quick example</h1></a>  <a href="#why-em-not-em-micro-frontends-">
+<h1 class="toc-entry" style="text-indent:0">
+<span class="toc-numb">4 </span>Why <em>not</em> micro-frontends?</h1></a>  <a href="#complexity">
+<h2 class="toc-entry" style="text-indent:10px">
+<span class="toc-numb">4.1 </span>Complexity</h2></a>  <a href="#not-for-small-projects-teams">
+<h2 class="toc-entry" style="text-indent:10px">
+<span class="toc-numb">4.2 </span>Not for small projects/teams</h2></a>  <a href="#conclusion">
+<h1 class="toc-entry" style="text-indent:0">
+<span class="toc-numb">5 </span>Conclusion</h1></a> 
+    </div>
+  </div>
+   <p>Micro-frontends: set the <code class="inline-code">max-width</code> of your website to <code class="inline-code">10px</code> and you’re good right? WRONG.</p>
 <p>Micro-frontends don’t actually have anything to do with the visual size of your frontend (neither are they related to the size in memory of your frontend’s codebase).</p>
 <p>In this post I’ll be talking about the main concepts I learned while reading up on micro-frontends for the first time. My main sources were:</p>
 <ul>
-<li><a href="https://martinfowler.com/articles/micro-frontends.html" title="" class="md-link" data-themeable>Micro-frontends by Cam Jackson</a></li>
-<li><a href="https://micro-frontends.org/" title="" class="md-link" data-themeable>Micro-frontends by Michael Geers</a></li>
+<li><a href="https://martinfowler.com/articles/micro-frontends.html" title="" class="md-link">Micro-frontends by Cam Jackson</a></li>
+<li><a href="https://micro-frontends.org/" title="" class="md-link">Micro-frontends by Michael Geers</a></li>
 </ul>
 <h1 class="post-body-header">
               <a name="what-are-micro-frontends-" href="#what-are-micro-frontends-">What are micro-frontends?</a>
@@ -142,7 +99,7 @@ Each team is autonomous and in order to be autonomous a requirement is that each
 <p>A key benefit I want to underline is the organizational aspect of micro-frontends: teams can make <em>local decisions</em> regarding their own part of the frontend as opposed to <em>global decisions</em> which in the case of a monolith would need to be discussed and coordinated with many more people.</p>
 <h1 class="post-body-header">
               <a name="a-quick-example" href="#a-quick-example">A quick example</a>
-            </h1><p>Imagine <code class="inline-code" data-themeable>glassgate.com</code>, a website where you can search and apply to jobs. This website has two micro-frontends, a “Browse Jobs” and an “Apply to Job” micro-frontend. Each micro-frontend has their own cross-functional and independent teams, respectively team <code class="inline-code" data-themeable>A</code> (red) and <code class="inline-code" data-themeable>B</code> (blue):</p>
+            </h1><p>Imagine <code class="inline-code">glassgate.com</code>, a website where you can search and apply to jobs. This website has two micro-frontends, a “Browse Jobs” and an “Apply to Job” micro-frontend. Each micro-frontend has their own cross-functional and independent teams, respectively team <code class="inline-code">A</code> (red) and <code class="inline-code">B</code> (blue):</p>
 <p></p><div class="img-container"><img src="../../images/micro-frontends.png" width="579" height="1056" alt="Liquibase overview"></div><p></p>
 <p>The key takeaways here are that:</p>
 <ul>
@@ -156,22 +113,22 @@ Each team is autonomous and in order to be autonomous a requirement is that each
 <h2 class="post-body-header">
               <a name="complexity" href="#complexity">Complexity</a>
             </h2><p>In my personal opinion as a total micro-frontend newbie: my first impression regarding the implementation of micro-frontends is that doing so is complex. Especially compared to a component model.</p>
-<p>In <a href="https://blog.scottlogic.com/2021/02/17/probably-dont-need-microfrontends.html" title="" class="md-link" data-themeable>You probably don’t need a micro-frontend</a>, Colin Eberhardt discusses why micro-frontends are probably not the best choice most of the time. You can read more about the reasons he says this but one reason I can’t argue too much with is the complexity that is brought into a project as a con to the benefits of micro-frontends.</p>
+<p>In <a href="https://blog.scottlogic.com/2021/02/17/probably-dont-need-microfrontends.html" title="" class="md-link">You probably don’t need a micro-frontend</a>, Colin Eberhardt discusses why micro-frontends are probably not the best choice most of the time. You can read more about the reasons he says this but one reason I can’t argue too much with is the complexity that is brought into a project as a con to the benefits of micro-frontends.</p>
 <h2 class="post-body-header">
               <a name="not-for-small-projects-teams" href="#not-for-small-projects-teams">Not for small projects/teams</a>
             </h2><p>In considering that one of the key benefits of micro-frontends are the organizational aspect, if the project is being built by a team of only a handful of developers with no immediate plans to scale the project, then micro-frontends might just introduce needless complexity.</p>
 <p>In this cases it might be wise to start with a monolith for simplicity and if the need occurs there is always the option to start incrementally moving towards micro-frontends.</p>
 <h1 class="post-body-header">
               <a name="conclusion" href="#conclusion">Conclusion</a>
-            </h1><p>In <a href="https://medium.com/@lucamezzalira/i-dont-understand-micro-frontends-88f7304799a9" title="" class="md-link" data-themeable>I don’t understand micro-frontends</a>, Luca Mezzarila addresses a discussion started by <a href="https://twitter.com/dan_abramov" title="" class="md-link" data-themeable>Dan Abramov</a> questioning the concept of micro-frontends as opposed to a component model. I liked Luca’s main idea that one is not trying to replace the other, that <strong>the right tool should be chosen for the right job</strong>, and that that decision depends on the full <em>context</em> of the problems at hand.</p>
+            </h1><p>In <a href="https://medium.com/@lucamezzalira/i-dont-understand-micro-frontends-88f7304799a9" title="" class="md-link">I don’t understand micro-frontends</a>, Luca Mezzarila addresses a discussion started by <a href="https://twitter.com/dan_abramov" title="" class="md-link">Dan Abramov</a> questioning the concept of micro-frontends as opposed to a component model. I liked Luca’s main idea that one is not trying to replace the other, that <strong>the right tool should be chosen for the right job</strong>, and that that decision depends on the full <em>context</em> of the problems at hand.</p>
 <p>That’s all I’ve got on micro-frontends for now, I’m curious as to how this architectural style will evolve in the future and what its use cases will be.</p>
 
-</div><footer id="footer">
+</div>
+ <footer id="footer">
   <small>All rights reserved © Alessio Palladino 2024</small>
 </footer>
-    </div>
+</div>
     <script>"use strict";!function(){var r=null;function t(){localStorage.getItem("theme")||(window.matchMedia("(prefers-color-scheme: dark)").matches?l("dark"):window.matchMedia("(prefers-color-scheme: light)").matches&&l("light"))}function n(){var e=document.getElementById("navbar");return e&&null!==(e=e.dataset.theme)&&void 0!==e?e:null}function a(){var e=localStorage.getItem("theme");e&&e!==n()&&l(e)}function l(e){if(r){for(var t=0;t<r.length;t++){var n=r[t];(n instanceof HTMLElement||n instanceof SVGElement)&&(n.dataset.theme=e)}var a=document.getElementById("theme-link"),l=(null===(l=null==a?void 0:a.getAttribute("href"))||void 0===l?void 0:l.split("style/")[0])+"style/";"light"===e?a&&a.setAttribute("href",l+"github.css"):a&&a.setAttribute("href",l+"tomorrow-night-bright.css"),a=e,(l=document.getElementById("switch-theme-btn"))&&l instanceof HTMLInputElement&&(l.checked="dark"===a)}}!function(){r=document.querySelectorAll(" [data-themeable] "),t(),a(),function(){try{window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",function(e){t()})}catch(e){try{window.matchMedia("(prefers-color-scheme: dark)").addListener(function(e){t()})}catch(e){console.error(e)}}}();var e=document.getElementById("switch-theme-btn");null!=e&&e.addEventListener("click",function(){var e,t=null;localStorage.getItem("theme")&&"dark"===localStorage.getItem("theme")?t="light":localStorage.getItem("theme")&&"light"===localStorage.getItem("theme")?t="dark":localStorage.getItem("theme")||(t=(e=n())&&"dark"==e?"light":"dark"),t=null!=t?t:"light",localStorage.setItem("theme",t),a()})}(),setInterval(function(){a()},2e3)}()</script>
 
-</body>
-
+  </body>
 </html>

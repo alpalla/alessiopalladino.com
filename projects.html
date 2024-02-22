@@ -1,76 +1,36 @@
 <!DOCTYPE html>
-<html lang="en" data-themeable>
-
-<head>
+<html lang="en">
+  <head>
     <title>Alessio&#x27;s Projects</title>
     <!-- Meta. -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="description" content="/">
+    <meta name="description" content="">
 
     <!-- Favicon. -->
-    <link rel="icon" type="image/svg+xml" href="images/favicon.png">
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.png">
 
     <!-- Styling for common components. -->
-    <link rel="stylesheet" href="style/common.css">
+    <link rel="stylesheet" href="/style/common.css">
     <!-- Conditional CSS. -->
-    <link rel="stylesheet" href="style/markdown.css">
+    
+    <link rel="stylesheet" href="/style/markdown.css">
 
     <!-- Common scripts. -->
-    <script src="scripts/common.js" async></script>
+    <script src="/scripts/common.js" async></script>
     <!-- Conditional scripts. -->
-</head>
+   </head>
 
-<body>
-    <div id="top-mask" data-themeable></div>
+  <body>
     <header>
-      <div id="navbar" data-themeable>
-        <h1 class="blogName">
-          <a id="blog-name" href="index.html">Al's Blog</a>
-        </h1>
-        <!-- Rounded switch -->
-        <div id="dark-mode-switch-wrapper" class="not-selectable">
-          <label class="switch" for="switch-theme-btn">
-            Toggle color theme.
-            <input id="switch-theme-btn" type="checkbox">
-            <span class="slider round">
-              <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" class="moon">
-                <path d="M0 0h24v24H0z" fill="none"/>
-                <path fill="white" d="M9 2c-1.05 0-2.05.16-3 .46 4.06 1.27 7 5.06 7 9.54 0 4.48-2.94 8.27-7 9.54.95.3 1.95.46 3 .46 5.52 0 10-4.48 10-10S14.52 2 9 2z"/>
-              </svg>
-              <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" class="sun">
-                <path d="M0 0h24v24H0z" fill="none"/>
-                <path d="M20 15.31L23.31 12 20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/>
-              </svg>
-            </span>
-          </label>
-        </div>
-      </div>
-      <div id="drawer-menu" data-themeable>
-        <div class="link-wrapper" data-themeable>
-          <a href="index.html">Blog</a>
-        </div>
-        <div class="link-wrapper" data-themeable>
-          <a href="projects.html">Projects</a>
-        </div>
-        <div class="link-wrapper" data-themeable>
-          <a href="about.html">About</a>
-        </div>
-        <div id="drawer-menu-handle" data-themeable>
-          <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24" viewBox="0 0 24 24" width="24">
-            <g><rect fill="none" height="24" width="24"/></g>
-            <g>
-              <g>
-                <g><path d="M20,9H4v2h16V9z M4,15h16v-2H4V15z"/></g>
-              </g>
-            </g>
-          </svg>
-        </div>
+      <div id="navbar">
+        <a href="/">Home</a>
+        <a href="/posts/index.html">Blog</a>
+        <a href="/projects.html">Projects</a>
+        <a href="/about.html">About</a>
       </div>
     </header>
-    <div id="mask"></div>
-    <div id="content" data-themeable>
-<h1 class="post-body-header">
+    <div id="content"><div id="projects"><h1 class="post-body-header">
               <a name="projects" href="#projects">Projects</a>
             </h1><p>Here you’ll find some projects I’ve worked on, listed chronologically.</p>
 <p>Some of my first projects were undertaken in college when I had barely started my degree in computer science. Therefore plenty of avoidable mistakes were made. A lot of times I simply just bit off much more than I could chew. However, none of that was important because <strong>the reason I embarked on these projects was for the learning experience</strong>.</p>
@@ -85,8 +45,8 @@
 <ul>
 <li>I discovered and learned how to use the Unity game engine.</li>
 <li>I dipped my toes in C#.</li>
-<li>I learned some basic game development concepts (such as the <a href="https://www.gamedesigning.org/learn/game-loop/#:~:text=The%20game%20loop%20refers%20to,in%20specific%20frames%20per%20second." title="" class="md-link" data-themeable>game loop</a>).</li>
-<li>I also learned some software design patterns, namely the <a href="https://en.wikipedia.org/wiki/Singleton_pattern#:~:text=In%20software%20engineering%2C%20the%20singleton,mathematical%20concept%20of%20a%20singleton." title="" class="md-link" data-themeable>Singleton</a> pattern (usually implemented by some god-like <code class="inline-code" data-themeable>GameManager</code> class).</li>
+<li>I learned some basic game development concepts (such as the <a href="https://www.gamedesigning.org/learn/game-loop/#:~:text=The%20game%20loop%20refers%20to,in%20specific%20frames%20per%20second." title="" class="md-link">game loop</a>).</li>
+<li>I also learned some software design patterns, namely the <a href="https://en.wikipedia.org/wiki/Singleton_pattern#:~:text=In%20software%20engineering%2C%20the%20singleton,mathematical%20concept%20of%20a%20singleton." title="" class="md-link">Singleton</a> pattern (usually implemented by some god-like <code class="inline-code">GameManager</code> class).</li>
 </ul>
 <p>With these first projects it really felt like you could take over the world with code. Again, I was ignoring so many fundamental steps such as design and testing, but that also made it more fun at the time.</p>
 <h1 class="post-body-header">
@@ -121,7 +81,7 @@
 <li>You had a freaking awesome little Minimap on the right of the screen (I wanted it to look like Sublime).</li>
 <li>The line your caret was currently on was highlighted (notice that it’s also highlighted in the Minimap!).</li>
 <li>The scrolling for the editor and the Minimap (the part that shows you what section of the file you are currently viewing) was nicely synced.</li>
-<li>Syntax highlighting! Though it was buggy and only worked for Java and even writing about how I implemented it makes me cringe (calling <code class="inline-code" data-themeable>find()</code> in a certain area of the text given a list of keywords).</li>
+<li>Syntax highlighting! Though it was buggy and only worked for Java and even writing about how I implemented it makes me cringe (calling <code class="inline-code">find()</code> in a certain area of the text given a list of keywords).</li>
 </ul>
 <p>This project really just makes me laugh, I had fun making it and made plenty of mistakes, though I learned some cool things along the way:</p>
 <ul>
@@ -162,13 +122,13 @@
     Your browser does not support the video tag.
 </video>
 
-</div><p>Link to <a href="https://github.com/alpalla/old_projects/tree/master/guitar_web_app" title="" class="md-link" data-themeable>source code</a>.</p>
+</div><p>Link to <a href="https://github.com/alpalla/old_projects/tree/master/guitar_web_app" title="" class="md-link">source code</a>.</p>
 <h1 class="post-body-header">
               <a name="vscode-contributions" href="#vscode-contributions">vscode contributions</a>
             </h1><p>I contributed to vscode a couple of times:</p>
 <ul>
-<li><a href="https://github.com/microsoft/vscode/pull/89872" title="" class="md-link" data-themeable>Allow N instances of the same task</a>.</li>
-<li><a href="https://github.com/microsoft/vscode/pull/72015" title="" class="md-link" data-themeable>Terminate all tasks</a>.</li>
+<li><a href="https://github.com/microsoft/vscode/pull/89872" title="" class="md-link">Allow N instances of the same task</a>.</li>
+<li><a href="https://github.com/microsoft/vscode/pull/72015" title="" class="md-link">Terminate all tasks</a>.</li>
 </ul>
 <p>These were great experiences. The only reason I don’t contribute more often is because sometimes you’ll follow good etiquette and say that you’re working on an issue but then someone else just opens a PR which depending on how long you were working on a fix, throws a lot of your time away.</p>
 <h1 class="post-body-header">
@@ -176,27 +136,26 @@
             </h1><p>It had been a while since I had worked with React and I wanted to brush up on it. So I started by doing the official React tic-tac-toe tutorial, here’s a screenshot of my final result:
 </p><div class="img-container"><img src="images/tic-tac-toe.png" width="758" height="537" alt="React tic-tac-toe"></div><p></p>
 <ul>
-<li><p><a href="https://github.com/alpalla/react-tictactoe" title="" class="md-link" data-themeable>link to code</a></p>
+<li><p><a href="https://github.com/alpalla/react-tictactoe" title="" class="md-link">link to code</a></p>
 </li>
-<li><p><a href="https://alpalla.github.io/react-tictactoe/" title="" class="md-link" data-themeable>link to game</a></p>
+<li><p><a href="https://alpalla.github.io/react-tictactoe/" title="" class="md-link">link to game</a></p>
 <p>I then made a little pattern-matching game of my own in React: 
 </p><div class="img-container"><img src="images/patterns.png" width="345" height="480" alt="Pattern matching game"></div><p></p>
 </li>
-<li><p><a href="https://github.com/alpalla/patterns" title="" class="md-link" data-themeable>link to code</a></p>
+<li><p><a href="https://github.com/alpalla/patterns" title="" class="md-link">link to code</a></p>
 </li>
-<li><p><a href="https://alpalla.github.io/patterns/" title="" class="md-link" data-themeable>link to game</a>.</p>
+<li><p><a href="https://alpalla.github.io/patterns/" title="" class="md-link">link to game</a>.</p>
 </li>
 </ul>
 <h1 class="post-body-header">
               <a name="this-website-" href="#this-website-">This website!</a>
             </h1><p>How could I not mention this site, I wrote a static site generator to make it and it was really fun!</p>
-
-<!--  --><footer id="footer">
+</div>
+ <footer id="footer">
   <small>All rights reserved © Alessio Palladino 2024</small>
 </footer>
-    </div>
+</div>
     <script>"use strict";!function(){var r=null;function t(){localStorage.getItem("theme")||(window.matchMedia("(prefers-color-scheme: dark)").matches?l("dark"):window.matchMedia("(prefers-color-scheme: light)").matches&&l("light"))}function n(){var e=document.getElementById("navbar");return e&&null!==(e=e.dataset.theme)&&void 0!==e?e:null}function a(){var e=localStorage.getItem("theme");e&&e!==n()&&l(e)}function l(e){if(r){for(var t=0;t<r.length;t++){var n=r[t];(n instanceof HTMLElement||n instanceof SVGElement)&&(n.dataset.theme=e)}var a=document.getElementById("theme-link"),l=(null===(l=null==a?void 0:a.getAttribute("href"))||void 0===l?void 0:l.split("style/")[0])+"style/";"light"===e?a&&a.setAttribute("href",l+"github.css"):a&&a.setAttribute("href",l+"tomorrow-night-bright.css"),a=e,(l=document.getElementById("switch-theme-btn"))&&l instanceof HTMLInputElement&&(l.checked="dark"===a)}}!function(){r=document.querySelectorAll(" [data-themeable] "),t(),a(),function(){try{window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",function(e){t()})}catch(e){try{window.matchMedia("(prefers-color-scheme: dark)").addListener(function(e){t()})}catch(e){console.error(e)}}}();var e=document.getElementById("switch-theme-btn");null!=e&&e.addEventListener("click",function(){var e,t=null;localStorage.getItem("theme")&&"dark"===localStorage.getItem("theme")?t="light":localStorage.getItem("theme")&&"light"===localStorage.getItem("theme")?t="dark":localStorage.getItem("theme")||(t=(e=n())&&"dark"==e?"light":"dark"),t=null!=t?t:"light",localStorage.setItem("theme",t),a()})}(),setInterval(function(){a()},2e3)}()</script>
 
-</body>
-
+  </body>
 </html>
