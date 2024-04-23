@@ -249,9 +249,6 @@ spec:
 <!-- Add helpful resources for studying. -->
 
 </div>
- <footer id="footer">
-  <small>All rights reserved © Alessio Palladino 2024</small>
-</footer>
 </div>
     <script>"use strict";!function(){var r=null;function t(){localStorage.getItem("theme")||(window.matchMedia("(prefers-color-scheme: dark)").matches?l("dark"):window.matchMedia("(prefers-color-scheme: light)").matches&&l("light"))}function n(){var e=document.getElementById("navbar");return e&&null!==(e=e.dataset.theme)&&void 0!==e?e:null}function a(){var e=localStorage.getItem("theme");e&&e!==n()&&l(e)}function l(e){if(r){for(var t=0;t<r.length;t++){var n=r[t];(n instanceof HTMLElement||n instanceof SVGElement)&&(n.dataset.theme=e)}var a=document.getElementById("theme-link"),l=(null===(l=null==a?void 0:a.getAttribute("href"))||void 0===l?void 0:l.split("style/")[0])+"style/";"light"===e?a&&a.setAttribute("href",l+"github.css"):a&&a.setAttribute("href",l+"tomorrow-night-bright.css"),a=e,(l=document.getElementById("switch-theme-btn"))&&l instanceof HTMLInputElement&&(l.checked="dark"===a)}}!function(){r=document.querySelectorAll(" [data-themeable] "),t(),a(),function(){try{window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",function(e){t()})}catch(e){try{window.matchMedia("(prefers-color-scheme: dark)").addListener(function(e){t()})}catch(e){console.error(e)}}}();var e=document.getElementById("switch-theme-btn");null!=e&&e.addEventListener("click",function(){var e,t=null;localStorage.getItem("theme")&&"dark"===localStorage.getItem("theme")?t="light":localStorage.getItem("theme")&&"light"===localStorage.getItem("theme")?t="dark":localStorage.getItem("theme")||(t=(e=n())&&"dark"==e?"light":"dark"),t=null!=t?t:"light",localStorage.setItem("theme",t),a()})}(),setInterval(function(){a()},2e3)}()</script>
 
