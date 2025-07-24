@@ -11,6 +11,20 @@
 			?.setAttribute("disabled", "true")
 
 		document.getElementById(`${theme}-css`)?.removeAttribute("disabled")
+
+		document
+			.getElementById("github-logo")
+			?.setAttribute(
+				"src",
+				`/github-logo-${theme === "light" ? "dark" : "light"}.svg`,
+			)
+
+		document
+			.getElementById("linkedin-logo")
+			?.setAttribute(
+				"src",
+				`/linkedin-logo-${theme === "light" ? "dark" : "light"}.png`,
+			)
 	}
 
 	if (storedTheme) {
